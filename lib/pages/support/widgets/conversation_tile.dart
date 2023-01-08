@@ -109,13 +109,14 @@ class ConversationTile extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            Align(
-              alignment: Alignment.centerRight,
-              child: SmallButton(
-                title: 'Resolve',
-                onTap: onResolveTap,
-              ),
-            )
+            if (datum.status != 3)
+              Align(
+                alignment: Alignment.centerRight,
+                child: SmallButton(
+                  title: 'Resolve',
+                  onTap: onResolveTap,
+                ),
+              )
           ],
         ),
       ),

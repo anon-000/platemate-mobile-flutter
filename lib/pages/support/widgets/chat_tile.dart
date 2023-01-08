@@ -1,4 +1,3 @@
-import 'package:event_admin/data_models/chat.dart';
 import 'package:event_admin/data_models/support_chat.dart';
 import 'package:event_admin/data_models/user.dart';
 import 'package:event_admin/pages/common/image_view_page.dart';
