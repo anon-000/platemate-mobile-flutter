@@ -3,8 +3,8 @@
 ///
 
 import 'dart:developer';
-import 'package:event_admin/data_models/chat.dart';
-import 'package:event_admin/pages/chats/controllers/all_chats_controller.dart';
+import 'package:event_admin/data_models/support_chat.dart';
+import 'package:event_admin/pages/support/controllers/all_chats_controller.dart';
 import 'package:event_admin/utils/shared_preference_helper.dart';
 import 'package:get/get.dart';
 import 'package:socket_io_client/socket_io_client.dart';
@@ -15,7 +15,7 @@ import '../app_configs/environment.dart';
 ///
 
 mixin AppSocketHelper {
-  static const String CHAT_CREATED = 'v1/chat/chat-message created';
+  static const String SUPPORT_CHAT_CREATED = 'v1/chat/chat-message created';
 
   static late Socket socket;
 
@@ -55,16 +55,16 @@ mixin AppSocketHelper {
   }
 
   static _initListeners() {
-    socket.on(CHAT_CREATED, (data) {
+    socket.on(SUPPORT_CHAT_CREATED, (data) {
       log("CHAT_CREATED ========>>> ${data["_id"]}");
       try {
-        final chatDatum = ChatDatum.fromJson(data);
+        final chatDatum = SupportChat.fromJson(data);
 
         if (Get.isRegistered<AllChatsController>()) {
           final chatsController = Get.find<AllChatsController>();
           if (chatDatum.createdBy!.id !=
               SharedPreferenceHelper.user!.user!.id) {
-            // chatsController.addDatum(chatDatum);
+            chatsController.addDatum(chatDatum);
           }
         }
       } catch (e, s) {
@@ -83,6 +83,6 @@ mixin AppSocketHelper {
   }
 
   static _disposeListeners() {
-    socket.off(CHAT_CREATED);
+    socket.off(SUPPORT_CHAT_CREATED);
   }
 }

@@ -6,16 +6,16 @@ import 'package:charts_flutter_new/flutter.dart' as charts;
 /// Created by Auro on 08/01/23 at 2:34 PM
 ///
 
-class BookingCountChart extends StatefulWidget {
-  final Map<String, BookingReport?>? data;
+class UserCountChart extends StatefulWidget {
+  final Map<String, dynamic>? data;
 
-  const BookingCountChart(this.data, {Key? key}) : super(key: key);
+  const UserCountChart(this.data, {Key? key}) : super(key: key);
 
   @override
-  State<BookingCountChart> createState() => _BookingCountChartState();
+  State<UserCountChart> createState() => _UserCountChartState();
 }
 
-class _BookingCountChartState extends State<BookingCountChart> {
+class _UserCountChartState extends State<UserCountChart> {
   List<BookingReport> bookingData = [];
 
   @override
@@ -24,27 +24,23 @@ class _BookingCountChartState extends State<BookingCountChart> {
     arrangeData();
   }
 
-  Map<String, BookingReport?>? get data => widget.data;
+  Map<String, dynamic>? get data => widget.data;
 
   arrangeData() {
     List<String> bKeys = data!.keys.toList();
     bKeys.forEach((v) {
-      BookingReport d = data![v]!;
+      BookingReport d = BookingReport();
       d.monthString = v.substring(0, 3);
-      bookingData.add(data![v]!);
+      d.count = data![v]!;
+      bookingData.add(d);
     });
-    bookingData.sort((a, b) => a.month! > b.month!
-        ? 1
-        : a.month! < b.month!
-            ? -1
-            : 0);
   }
 
   @override
   Widget build(BuildContext context) {
     List<charts.Series<BookingReport, String>> series = [
       charts.Series(
-        id: "Booking",
+        id: "User",
         data: bookingData,
         domainFn: (BookingReport series, _) => series.monthString!,
         measureFn: (BookingReport series, _) => series.count,

@@ -1,7 +1,7 @@
 import 'package:event_admin/app_configs/app_colors.dart';
 import 'package:event_admin/app_configs/app_decorations.dart';
-import 'package:event_admin/pages/chats/controllers/all_chats_controller.dart';
-import 'package:event_admin/pages/chats/widgets/chat_tile.dart';
+import 'package:event_admin/pages/support/controllers/all_chats_controller.dart';
+import 'package:event_admin/pages/support/widgets/chat_tile.dart';
 import 'package:event_admin/utils/app_socket_helper.dart';
 import 'package:event_admin/widgets/app_error_widget.dart';
 import 'package:flutter/material.dart';

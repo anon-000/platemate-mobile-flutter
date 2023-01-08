@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:event_admin/api_services/base_api.dart';
 import 'package:event_admin/app_configs/api_routes.dart';
 import 'package:event_admin/data_models/support_ticket.dart';
+import 'package:event_admin/utils/snackbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,6 +27,31 @@ class AllConversationController extends GetxController
         getMoreData();
       }
     });
+  }
+
+  resolveTicket(SupportTicket v) async {
+    final tempList = state ?? [];
+    int prevStatus = v.status!;
+    int index = tempList.indexWhere((element) => element.id == v.id);
+    tempList[index].status = 3;
+    change(tempList, status: RxStatus.success());
+
+    try {
+      await ApiCall.patch(
+        ApiRoutes.support_ticket,
+        id: v.id,
+        body: {
+          'status': 3,
+        },
+      );
+      SnackBarHelper.show("Event is cancelled");
+      // tempList.removeAt(index);
+      // change(tempList, status: RxStatus.success());
+    } catch (err) {
+      SnackBarHelper.show("$err");
+      tempList[index].status = prevStatus;
+      change(tempList, status: RxStatus.success());
+    }
   }
 
   magicApiCall() async {

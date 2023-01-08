@@ -21,13 +21,13 @@ class StatsDatum {
   });
 
   int? totalUsers;
-  UserReport? userReport;
+  Map<String, dynamic>? userReport;
   int? totalBookings;
   Map<String, BookingReport?>? bookingReport;
 
   factory StatsDatum.fromJson(Map<String, dynamic> json) => StatsDatum(
         totalUsers: json["totalUsers"],
-        userReport: UserReport.fromJson(json["userReport"]),
+        userReport: json["userReport"],
         totalBookings: json["totalBookings"],
         bookingReport: Map.from(json["bookingReport"]!).map((k, v) =>
             MapEntry<String, BookingReport?>(k, BookingReport.fromJson(v))),
@@ -35,7 +35,7 @@ class StatsDatum {
 
   Map<String, dynamic> toJson() => {
         "totalUsers": totalUsers,
-        "userReport": userReport!.toJson(),
+        "userReport": userReport,
         "totalBookings": totalBookings,
         "bookingReport": Map.from(bookingReport!)
             .map((k, v) => MapEntry<String, dynamic>(k, v!.toJson())),

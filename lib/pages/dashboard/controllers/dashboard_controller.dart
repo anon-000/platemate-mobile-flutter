@@ -15,7 +15,6 @@ class DashboardController extends GetxController with StateMixin<StatsDatum> {
       final result = await ApiCall.post(
         ApiRoutes.statistics,
       );
-      log("$result");
       final response = StatsDatum.fromJson(result.data);
       change(response, status: RxStatus.success());
     } catch (e, s) {

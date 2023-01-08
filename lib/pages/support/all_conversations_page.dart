@@ -1,12 +1,11 @@
 import 'dart:async';
-
-import 'package:event_admin/app_configs/app_colors.dart';
 import 'package:event_admin/app_configs/app_decorations.dart';
-import 'package:event_admin/pages/chats/controllers/all_conversation_controller.dart';
-import 'package:event_admin/pages/chats/widgets/conversation_tile.dart';
+import 'package:event_admin/pages/support/controllers/all_conversation_controller.dart';
+import 'package:event_admin/utils/dialog_helper.dart';
 import 'package:event_admin/widgets/app_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'widgets/conversation_tile.dart';
 
 ///
 /// Created by Auro on 14/10/22 at 9:52 AM
@@ -95,7 +94,16 @@ class _AllConversationsPageState extends State<AllConversationsPage> {
                                     child: CircularProgressIndicator());
                               return ConversationTile(
                                 state[i],
-                                onResolveTap: () {},
+                                onResolveTap: () {
+                                  showEventDialog(
+                                    title:
+                                        "Are you sure you want to resolve the ticket?",
+                                    positiveCallback: () {
+                                      Get.back();
+                                      controller.resolveTicket(state[i]);
+                                    },
+                                  );
+                                },
                               );
                             },
                             itemCount: controller.status.isLoadingMore

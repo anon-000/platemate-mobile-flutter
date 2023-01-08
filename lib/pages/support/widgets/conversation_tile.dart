@@ -1,11 +1,9 @@
 import 'package:event_admin/app_configs/app_colors.dart';
-import 'package:event_admin/data_models/conversation.dart';
 import 'package:event_admin/data_models/support_ticket.dart';
-import 'package:event_admin/pages/chats/chat_details_page.dart';
-import 'package:event_admin/pages/chats/controllers/all_conversation_controller.dart';
 import 'package:event_admin/pages/dashboard/dashboard_page.dart';
+import 'package:event_admin/pages/support/chat_details_page.dart';
+import 'package:event_admin/pages/support/controllers/all_conversation_controller.dart';
 import 'package:event_admin/pages/vendors/widgets/vendor_tile.dart';
-import 'package:event_admin/utils/shared_preference_helper.dart';
 import 'package:event_admin/widgets/user_circle_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -2,13 +2,13 @@ import 'package:event_admin/pages/authenticaton/login/login_page.dart';
 import 'package:event_admin/pages/booking_distribution/booking_distribution_page.dart';
 import 'package:event_admin/pages/booking_history/event_history_page.dart';
 import 'package:event_admin/pages/booking_stats/booking_stats_page.dart';
-import 'package:event_admin/pages/chats/chat_details_page.dart';
 import 'package:event_admin/pages/dashboard/dashboard_page.dart';
 import 'package:event_admin/pages/earnings/earnings_page.dart';
 import 'package:event_admin/pages/event_types/event_types_page.dart';
 import 'package:event_admin/pages/events/event_details_page.dart';
 import 'package:event_admin/pages/reviews/reviews_page.dart';
 import 'package:event_admin/pages/splash/splash_screen.dart';
+import 'package:event_admin/pages/support/chat_details_page.dart';
 import 'package:event_admin/pages/web_view/web_view_page.dart';
 import 'package:get/get.dart';
 

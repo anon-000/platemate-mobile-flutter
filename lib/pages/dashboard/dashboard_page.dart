@@ -1,4 +1,3 @@
-import 'package:event_admin/pages/chats/all_conversations_page.dart';
 import 'package:event_admin/pages/dashboard/controllers/dashboard_controller.dart';
 import 'package:event_admin/pages/vendors/vendors_page.dart';
 import 'package:event_admin/widgets/my_background.dart';
@@ -7,6 +6,8 @@ import 'package:event_admin/pages/dashboard/widgets/navigation_bar.dart';
 import 'package:event_admin/pages/home/home_page.dart';
 import 'package:event_admin/pages/profile/profile_page.dart';
 import 'package:get/get.dart';
+
+import '../support/all_conversations_page.dart';
 
 ///
 /// Created by Kumar Auro from Boiler plate
@@ -30,7 +31,7 @@ class _DashboardPageState extends State<DashboardPage> {
     super.initState();
     controller = Get.isRegistered<DashboardController>()
         ? Get.find<DashboardController>()
-        : Get.put(DashboardController());
+        : Get.put(DashboardController(), permanent: true);
     controller.onInit();
     controller.getData();
   }

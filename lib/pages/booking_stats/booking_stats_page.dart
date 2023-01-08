@@ -2,6 +2,7 @@ import 'package:event_admin/pages/booking_stats/widgets/booking_count_chart.dart
 import 'package:event_admin/pages/booking_stats/widgets/distribution_chart.dart';
 import 'package:event_admin/pages/dashboard/controllers/dashboard_controller.dart';
 import 'package:event_admin/widgets/app_error_widget.dart';
+import 'package:event_admin/widgets/my_background.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,8 +28,7 @@ class _BookingStatsPageState extends State<BookingStatsPage> {
     controller = Get.isRegistered<DashboardController>()
         ? Get.find<DashboardController>()
         : Get.put(DashboardController());
-    controller.onInit();
-    controller.getData();
+    if (controller.state == null) controller.getData();
   }
 
   @override
@@ -37,54 +37,63 @@ class _BookingStatsPageState extends State<BookingStatsPage> {
       appBar: AppBar(
         title: Text("Booking statistics"),
       ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          controller.getData();
-        },
-        child: controller.obx(
-          (state) {
-            if (state != null) {
-              return ListView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                children: [
-                  Text(
-                    "Event history analytics",
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  BookingCountChart(
-                    state.bookingReport!,
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    "Booking Distribution analytics",
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  BookingDistributionChart(
-                    state.bookingReport!,
-                  ),
-                ],
-              );
-            }
-            return SizedBox();
-          },
-          onError: (e) => AppEmptyWidget(
-            title: "$e",
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: MyBackground(),
           ),
-          onEmpty: AppEmptyWidget(
-            title: "No stats available",
-            onReload: () {
-              controller.getData();
-            },
+          Positioned.fill(
+            child: RefreshIndicator(
+              onRefresh: () async {
+                controller.getData();
+              },
+              child: controller.obx(
+                (state) {
+                  if (state != null) {
+                    return ListView(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 10),
+                      children: [
+                        Text(
+                          "Event history analytics",
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                        BookingCountChart(
+                          state.bookingReport!,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Booking Distribution analytics",
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                        BookingDistributionChart(
+                          state.bookingReport!,
+                        ),
+                      ],
+                    );
+                  }
+                  return SizedBox();
+                },
+                onError: (e) => AppEmptyWidget(
+                  title: "$e",
+                ),
+                onEmpty: AppEmptyWidget(
+                  title: "No stats available",
+                  onReload: () {
+                    controller.getData();
+                  },
+                ),
+                onLoading: Center(
+                  child: CircularProgressIndicator(color: Colors.white),
+                ),
+              ),
+            ),
           ),
-          onLoading: Center(
-            child: CircularProgressIndicator(color: Colors.white),
-          ),
-        ),
+        ],
       ),
     );
   }
