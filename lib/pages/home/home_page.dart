@@ -44,7 +44,9 @@ class _HomePageState extends State<HomePage> {
               controller.getData();
             },
             child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              physics: BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
               children: [
                 Row(
                   children: [
@@ -215,6 +217,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 200)
               ],
             ),
           ),

@@ -30,6 +30,7 @@ class AuthHelper {
       "strategy": "local",
       "email": "$email",
       "password": "$password",
+      'role': 1,
       // "fcmId": "$fcmId",
       // "deviceId": deviceInfo['deviceId'],
       //"coordinates": [85.2456, 25.3654]
