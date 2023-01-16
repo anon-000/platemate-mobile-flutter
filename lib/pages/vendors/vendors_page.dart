@@ -34,11 +34,11 @@ class _VendorsPageState extends State<VendorsPage> {
     approvedController = Get.isRegistered<ApprovedVendorsController>()
         ? Get.find<ApprovedVendorsController>()
         : Get.put(ApprovedVendorsController());
-    approvedController.getData();
+    if (approvedController.state == null) approvedController.getData();
     unApprovedController = Get.isRegistered<UnApprovedVendorsController>()
         ? Get.find<UnApprovedVendorsController>()
         : Get.put(UnApprovedVendorsController());
-    unApprovedController.getData();
+    if (unApprovedController.state == null) unApprovedController.getData();
   }
 
   @override

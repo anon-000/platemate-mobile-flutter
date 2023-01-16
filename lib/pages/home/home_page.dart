@@ -5,6 +5,7 @@ import 'package:event_admin/pages/booking_stats/widgets/user_chart.dart';
 import 'package:event_admin/pages/dashboard/controllers/dashboard_controller.dart';
 import 'package:event_admin/pages/dashboard/dashboard_page.dart';
 import 'package:event_admin/pages/home/widgets/home_top_bar.dart';
+import 'package:event_admin/pages/home/widgets/monthly_booking.dart';
 import 'package:event_admin/widgets/app_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -185,6 +186,8 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ],
                           ),
+                          const SizedBox(height: 16),
+                          MonthlyBooking(state!.bookingReport!),
                           const SizedBox(height: 22),
                           Align(
                             alignment: Alignment.centerLeft,

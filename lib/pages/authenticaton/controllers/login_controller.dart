@@ -4,6 +4,8 @@
 
 import 'dart:developer';
 
+import 'package:event_admin/api_services/base_api.dart';
+import 'package:event_admin/app_configs/api_routes.dart';
 import 'package:event_admin/data_models/user.dart';
 import 'package:event_admin/global_controllers/user_controller.dart';
 import 'package:event_admin/utils/app_auth_helper.dart';
@@ -54,7 +56,7 @@ class LoginController extends GetxController {
     update();
   }
 
-  void proceed() {
+  void proceed() async{
     if (_email.isEmpty) {
       emailErr = "Email id is required";
       update();
@@ -77,7 +79,9 @@ class LoginController extends GetxController {
       autoValidateMode.value = AutovalidateMode.always;
     } else {
       state.save();
-      print("phone - $_email : password - $_password");
+      // print("phone - $_email : password - $_password");
+      // final ers = await ApiCall.get(ApiRoutes.event_type, isAuthNeeded: false);
+      // log("$ers");
       buttonKey.currentState?.showLoader();
       AuthHelper.userLoginWithEmail(_email, _password).then((value) {
         final String accessToken = value['accessToken'];

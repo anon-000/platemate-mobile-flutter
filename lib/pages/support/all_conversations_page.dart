@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:event_admin/app_configs/app_decorations.dart';
+import 'package:event_admin/pages/dashboard/dashboard_page.dart';
 import 'package:event_admin/pages/support/controllers/all_conversation_controller.dart';
-import 'package:event_admin/utils/dialog_helper.dart';
+import 'package:event_admin/pages/support/support_details_page.dart';
 import 'package:event_admin/widgets/app_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,12 +36,12 @@ class _AllConversationsPageState extends State<AllConversationsPage> {
     controller.getData();
   }
 
-  _onSearchChanged(String query) {
-    if (_debounce?.isActive ?? false) _debounce!.cancel();
-    _debounce = Timer(const Duration(milliseconds: 500), () {
-      controller.magicApiCall();
-    });
-  }
+  // _onSearchChanged(String query) {
+  //   if (_debounce?.isActive ?? false) _debounce!.cancel();
+  //   _debounce = Timer(const Duration(milliseconds: 500), () {
+  //     controller.magicApiCall();
+  //   });
+  // }
 
   @override
   void dispose() {
@@ -95,14 +96,21 @@ class _AllConversationsPageState extends State<AllConversationsPage> {
                               return ConversationTile(
                                 state[i],
                                 onResolveTap: () {
-                                  showEventDialog(
-                                    title:
-                                        "Are you sure you want to resolve the ticket?",
-                                    positiveCallback: () {
-                                      Get.back();
-                                      controller.resolveTicket(state[i]);
+                                  Get.toNamed(
+                                    DashboardPage.routeName +
+                                        SupportDetailsPage.routeName,
+                                    arguments: {
+                                      "datum": state[i],
                                     },
                                   );
+                                  // showEventDialog(
+                                  //   title:
+                                  //       "Are you sure you want to resolve the ticket?",
+                                  //   positiveCallback: () {
+                                  //     Get.back();
+                                  //     controller.resolveTicket(state[i]);
+                                  //   },
+                                  // );
                                 },
                               );
                             },

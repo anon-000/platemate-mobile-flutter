@@ -24,6 +24,7 @@ class SupportTicket {
     this.v,
     this.addressedBy,
     this.addressedOn,
+    this.attachments,
   });
 
   String id;
@@ -37,6 +38,7 @@ class SupportTicket {
   int? v;
   String? addressedBy;
   DateTime? addressedOn;
+  List<String>? attachments;
 
   factory SupportTicket.fromJson(Map<String, dynamic> json) => SupportTicket(
         id: json["_id"],
@@ -51,6 +53,9 @@ class SupportTicket {
         updatedAt: json["updatedAt"] == null
             ? null
             : DateTime.parse(json["updatedAt"]),
+        attachments: json["attachments"] == null
+            ? []
+            : List<String>.from(json["attachments"].map((x) => x)),
         v: json["__v"],
         addressedBy: json["addressedBy"],
         addressedOn: json["addressedOn"] == null
@@ -64,6 +69,7 @@ class SupportTicket {
         "event": event == null ? null : event!.toJson(),
         "description": description,
         "supportTicketId": supportTicketId,
+        "attachments": attachments,
         "status": status,
         "createdAt": createdAt!.toIso8601String(),
         "updatedAt": updatedAt!.toIso8601String(),

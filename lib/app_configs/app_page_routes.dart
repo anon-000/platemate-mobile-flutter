@@ -9,6 +9,8 @@ import 'package:event_admin/pages/events/event_details_page.dart';
 import 'package:event_admin/pages/reviews/reviews_page.dart';
 import 'package:event_admin/pages/splash/splash_screen.dart';
 import 'package:event_admin/pages/support/chat_details_page.dart';
+import 'package:event_admin/pages/support/support_details_page.dart';
+import 'package:event_admin/pages/vendors/vendor_details/vendor_details_page.dart';
 import 'package:event_admin/pages/web_view/web_view_page.dart';
 import 'package:get/get.dart';
 
@@ -59,6 +61,14 @@ class AppPages {
         GetPage(
           name: EventDetailsPage.routeName,
           page: () => EventDetailsPage(),
+        ),
+        GetPage(
+          name: VendorDetailsPage.routeName,
+          page: () => VendorDetailsPage(),
+        ),
+        GetPage(
+          name: SupportDetailsPage.routeName,
+          page: () => SupportDetailsPage(),
         ),
       ],
     )

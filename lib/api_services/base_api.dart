@@ -60,10 +60,12 @@ class ApiCall {
       }
       return response;
     } on SocketException {
+      log("...>>>>>>>>>> SocketException ERROR  ");
       throw NoInternetError();
     } catch (error, s) {
       log('ERROR URL $basePath/$path/$id ${_dio.options.headers['Authorization']} ${jsonEncode(body)}',
           error: '$error', stackTrace: s);
+      log("...>>>>>>>>>>  $error ::::$s ");
       if ((error as dynamic).response == null) {
         throw NoInternetError();
       }

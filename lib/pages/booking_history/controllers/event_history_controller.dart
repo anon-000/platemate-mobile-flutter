@@ -84,6 +84,7 @@ class EventHistoryController extends GetxController
           '\$skip': skip,
           '\$limit': limit,
           'status': 1,
+          '\$populate': ['user', 'eventType'],
         },
       );
       final response = List<EventDatum>.from(
@@ -112,6 +113,7 @@ class EventHistoryController extends GetxController
             '\$skip': skip,
             '\$limit': limit,
             'status': 1,
+            '\$populate': ['user', 'eventType'],
           },
         );
 

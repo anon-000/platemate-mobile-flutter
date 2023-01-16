@@ -1,8 +1,8 @@
 import 'package:event_admin/app_configs/app_colors.dart';
 import 'package:event_admin/data_models/support_ticket.dart';
 import 'package:event_admin/pages/dashboard/dashboard_page.dart';
-import 'package:event_admin/pages/support/chat_details_page.dart';
 import 'package:event_admin/pages/support/controllers/all_conversation_controller.dart';
+import 'package:event_admin/pages/support/support_details_page.dart';
 import 'package:event_admin/pages/vendors/widgets/vendor_tile.dart';
 import 'package:event_admin/widgets/user_circle_avatar.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,7 @@ class ConversationTile extends StatelessWidget {
       onTap: () async {
         Get.focusScope!.unfocus();
         await Get.toNamed(
-          DashboardPage.routeName + ChatDetailsPage.routeName,
+          DashboardPage.routeName + SupportDetailsPage.routeName,
           arguments: {
             "datum": datum,
           },
@@ -51,6 +51,7 @@ class ConversationTile extends StatelessWidget {
                 UserCircleAvatar(
                   "${datum.user!.avatar}",
                   radius: 23,
+                  name: datum.user!.name,
                 ),
                 const SizedBox(width: 10),
                 Expanded(
@@ -107,16 +108,24 @@ class ConversationTile extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 color: AppColors.desc,
               ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 8),
-            if (datum.status != 3)
-              Align(
-                alignment: Alignment.centerRight,
-                child: SmallButton(
-                  title: 'Resolve',
-                  onTap: onResolveTap,
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                if (datum.status == 3)
+                  TicketStatus(datum.status == 3 ? "Resolved" : ""),
+                Spacer(),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: SmallButton(
+                    title: 'View details',
+                    onTap: onResolveTap,
+                  ),
                 ),
-              )
+              ],
+            )
           ],
         ),
       ),
@@ -148,6 +157,29 @@ class ChatMsgType extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class TicketStatus extends StatelessWidget {
+  final String title;
+
+  const TicketStatus(this.title, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(color: Colors.white.withOpacity(0.6)),
+      ),
+      child: Text(
+        "$title",
+        style: TextStyle(
+          fontSize: 12,
+        ),
+      ),
     );
   }
 }

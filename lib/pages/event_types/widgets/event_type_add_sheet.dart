@@ -205,7 +205,7 @@ class _EventTypeAdditionSheetState extends State<EventTypeAdditionSheet> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
-                          "Avatar",
+                          "Photo",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: AppColors.borderColor,

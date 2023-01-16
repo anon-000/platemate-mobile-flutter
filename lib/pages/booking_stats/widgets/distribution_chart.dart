@@ -73,12 +73,20 @@ class _BookingDistributionChartState extends State<BookingDistributionChart> {
         animate: true,
         primaryMeasureAxis: charts.NumericAxisSpec(
           renderSpec: charts.GridlineRendererSpec(
+            lineStyle: charts.LineStyleSpec(
+              color: charts.ColorUtil.fromDartColor(
+                  Color(0xffffffff).withOpacity(0.2)),
+            ),
             labelStyle: charts.TextStyleSpec(
                 fontSize: 12, color: charts.MaterialPalette.white),
           ),
         ),
         secondaryMeasureAxis: charts.NumericAxisSpec(
           renderSpec: charts.GridlineRendererSpec(
+            lineStyle: charts.LineStyleSpec(
+              color: charts.ColorUtil.fromDartColor(
+                  Color(0xffffffff).withOpacity(0.2)),
+            ),
             labelStyle: charts.TextStyleSpec(
                 fontSize: 12, color: charts.MaterialPalette.white),
           ),
@@ -87,6 +95,10 @@ class _BookingDistributionChartState extends State<BookingDistributionChart> {
           renderSpec: charts.GridlineRendererSpec(
             labelStyle: charts.TextStyleSpec(
                 fontSize: 12, color: charts.MaterialPalette.white),
+            lineStyle: charts.LineStyleSpec(
+              color: charts.ColorUtil.fromDartColor(
+                  Color(0xffffffff).withOpacity(0.2)),
+            ),
           ),
         ),
       ),

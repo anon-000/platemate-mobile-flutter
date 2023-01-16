@@ -6,6 +6,7 @@ import 'dart:convert';
 
 import 'package:event_admin/data_models/event_type.dart';
 import 'package:event_admin/data_models/sub_event_datum.dart';
+import 'package:event_admin/data_models/user.dart';
 
 EventDatum eventDatumFromJson(String str) =>
     EventDatum.fromJson(json.decode(str));
@@ -33,7 +34,7 @@ class EventDatum {
     this.loading = false,
   });
 
-  String? user;
+  User? user;
   bool loading;
   List<dynamic>? attachments;
   List<SubEventDatum>? subEvents;
@@ -52,7 +53,11 @@ class EventDatum {
   DateTime? startTime;
 
   factory EventDatum.fromJson(Map<String, dynamic> json) => EventDatum(
-        user: json["user"],
+        user: json["user"] == null
+            ? null
+            : json["user"] is String
+                ? User(id: json["user"])
+                : User.fromJson(json["user"]),
         loading: json["loading"] ?? false,
         attachments: json["attachments"] == null
             ? []
@@ -89,7 +94,7 @@ class EventDatum {
       );
 
   Map<String, dynamic> toJson() => {
-        "user": user,
+        "user": user == null ? null : user!.toJson(),
         "loading": loading,
         "attachments": attachments == null
             ? []
