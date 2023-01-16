@@ -133,6 +133,8 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               Expanded(
                                 child: Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(16, 0, 16, 0),
                                   alignment: Alignment.center,
                                   height: 120,
                                   decoration: BoxDecoration(
@@ -141,17 +143,34 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   clipBehavior: Clip.antiAlias,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text("Total Users"),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        "${state.totalUsers}",
-                                        style: TextStyle(
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.w700,
+                                      Expanded(
+                                        child: Column(
+                                          // mainAxisAlignment:
+                                          //     MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Total Customers"),
+                                            const SizedBox(height: 4),
+                                            Text(
+                                              "${state.totalUsers}",
+                                              style: TextStyle(
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
+                                          ],
+                                          mainAxisSize: MainAxisSize.min,
                                         ),
+                                      ),
+                                      const SizedBox(width: 16),
+                                      Icon(
+                                        Icons.person_outline_sharp,
+                                        size: 40,
                                       ),
                                     ],
                                   ),
@@ -160,6 +179,8 @@ class _HomePageState extends State<HomePage> {
                               const SizedBox(width: 10),
                               Expanded(
                                 child: Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(16, 0, 16, 0),
                                   alignment: Alignment.center,
                                   height: 120,
                                   decoration: BoxDecoration(
@@ -168,17 +189,34 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   clipBehavior: Clip.antiAlias,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text("Total Bookings"),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        "${state.totalBookings}",
-                                        style: TextStyle(
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.w700,
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Total Bookings"),
+                                            const SizedBox(height: 4),
+                                            Text(
+                                              "${state.totalBookings}",
+                                              style: TextStyle(
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
+                                          ],
                                         ),
+                                      ),
+                                      const SizedBox(width: 16),
+                                      Icon(
+                                        Icons.event_available,
+                                        size: 40,
                                       ),
                                     ],
                                   ),
@@ -187,7 +225,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           const SizedBox(height: 16),
-                          MonthlyBooking(state!.bookingReport!),
+                          MonthlyBooking(state.bookingReport!),
                           const SizedBox(height: 22),
                           Align(
                             alignment: Alignment.centerLeft,
