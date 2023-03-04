@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:platemate_user/pages/authenticaton/preference_first/preferences_first_page.dart';
+import 'package:platemate_user/pages/authenticaton/onboarding/preferences_first_page.dart';
 import 'package:platemate_user/utils/snackbar_helper.dart';
 
 import '../../../widgets/app_buttons/app_primary_button.dart';

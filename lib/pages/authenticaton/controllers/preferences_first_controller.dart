@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:platemate_user/pages/authenticaton/preference_second/preferences_second_page.dart';
+import 'package:platemate_user/pages/authenticaton/onboarding/preferences_second_page.dart';
 import 'package:platemate_user/utils/snackbar_helper.dart';
 import 'package:platemate_user/widgets/app_buttons/app_primary_button.dart';
 

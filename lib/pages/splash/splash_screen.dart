@@ -26,7 +26,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     );
     _arrowAnimation =
         Tween(begin: 0.0, end: 1.0).animate(_arrowAnimationController);
-    _arrowAnimationController.forward();
+    // _arrowAnimationController.forward();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Future.delayed(Duration(seconds: 2)).then((value) {
         AuthHelper.refreshAccessToken().whenComplete(() {
@@ -47,24 +47,35 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
           ),
           Positioned.fill(
             child: Center(
-              child: SlideTransition(
-                position: Tween(
-                  begin: Offset(0.0, 0.5),
-                  end: Offset(0.0, 0.0),
-                ).animate(_arrowAnimationController),
-                // position: AlwaysStoppedAnimation(
-                //     Offset(0, -_arrowAnimation.value * 5)),
-                // offset: Offset(0, -_arrowAnimation.value * 40),
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 60),
-                  child: SvgPicture.asset(
-                    AppAssets.splashLogo,
-                    height: 300,
-                  ),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 60),
+                child: SvgPicture.asset(
+                  AppAssets.splashLogo,
+                  height: 300,
                 ),
               ),
             ),
           ),
+          // Positioned.fill(
+          //   child: Center(
+          //     child: SlideTransition(
+          //       position: Tween(
+          //         begin: Offset(0.0, 0.5),
+          //         end: Offset(0.0, 0.0),
+          //       ).animate(_arrowAnimationController),
+          //       // position: AlwaysStoppedAnimation(
+          //       //     Offset(0, -_arrowAnimation.value * 5)),
+          //       // offset: Offset(0, -_arrowAnimation.value * 40),
+          //       child: Padding(
+          //         padding: const EdgeInsets.only(bottom: 60),
+          //         child: SvgPicture.asset(
+          //           AppAssets.splashLogo,
+          //           height: 300,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

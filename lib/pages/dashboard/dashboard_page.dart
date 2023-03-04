@@ -1,6 +1,7 @@
 import 'package:platemate_user/pages/dashboard/controllers/dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:platemate_user/pages/dashboard/widgets/navigation_bar.dart';
 import 'package:platemate_user/pages/home/home_page.dart';
 import 'package:platemate_user/pages/orders/orders_page.dart';
 import 'package:platemate_user/pages/profile/profile_page.dart';
@@ -42,6 +43,12 @@ class _DashboardPageState extends State<DashboardPage> {
         return false;
       },
       child: Scaffold(
+        backgroundColor: Color(0xffF5F5F5),
+        bottomNavigationBar: BottomNavBar(
+          onPageChange: (index) {
+            dashboardIndexNotifier.value = index;
+          },
+        ),
         body: SafeArea(
           child: ValueListenableBuilder(
             valueListenable: dashboardIndexNotifier,

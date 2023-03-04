@@ -47,6 +47,12 @@ mixin AppAssets {
   static const String logout = 'assets/icons/log_out.svg';
   static const String check_enabled = 'assets/icons/check_enabled.svg';
   static const String check_disabled = 'assets/icons/check_disabled.svg';
+  static const String home = 'assets/icons/home.svg';
+  static const String order = 'assets/icons/order.svg';
+  static const String qr_scanner = 'assets/icons/qr_scanner.svg';
+  static const String veg = 'assets/icons/veg.svg';
+
+  ///
   static const String demoProfile =
       'https://beststatus.net/wp-content/uploads/2022/01/Kgf-Dp-Whatsapp-DP-2-300x300.jpg';
   static const String demoIconImageCake =

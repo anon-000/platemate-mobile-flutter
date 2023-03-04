@@ -1,4 +1,4 @@
-import 'package:platemate_user/pages/authenticaton/avatar_selection/avatar_selection_page.dart';
+import 'package:platemate_user/pages/authenticaton/onboarding/avatar_selection_page.dart';
 import 'package:platemate_user/widgets/app_buttons/app_primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

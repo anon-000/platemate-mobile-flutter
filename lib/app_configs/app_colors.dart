@@ -18,8 +18,10 @@ mixin AppColors {
   static const desc = Color(0xffB1B1B1);
   static const primary = Color(0xffB1B1B1);
   static const labelColor = Color(0xff949494);
+  static const rating_yellow = Color(0xffFAC400);
 
 
+  static const orange = Color(0xffF57C3D);
   static const grey20 = Color(0xff333333);
   static const grey40 = Color(0xff666666);
   static const grey60 = Color(0xff999999);

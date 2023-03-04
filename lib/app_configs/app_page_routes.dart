@@ -1,7 +1,7 @@
-import 'package:platemate_user/pages/authenticaton/avatar_selection/avatar_selection_page.dart';
+import 'package:platemate_user/pages/authenticaton/onboarding/avatar_selection_page.dart';
 import 'package:platemate_user/pages/authenticaton/login/login_page.dart';
-import 'package:platemate_user/pages/authenticaton/preference_first/preferences_first_page.dart';
-import 'package:platemate_user/pages/authenticaton/preference_second/preferences_second_page.dart';
+import 'package:platemate_user/pages/authenticaton/onboarding/preferences_first_page.dart';
+import 'package:platemate_user/pages/authenticaton/onboarding/preferences_second_page.dart';
 import 'package:platemate_user/pages/authenticaton/signup/signup_page.dart';
 import 'package:platemate_user/pages/dashboard/dashboard_page.dart';
 import 'package:platemate_user/pages/splash/splash_screen.dart';
