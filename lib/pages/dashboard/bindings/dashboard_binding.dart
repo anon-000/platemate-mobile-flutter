@@ -1,4 +1,4 @@
-import 'package:event_admin/pages/dashboard/controllers/dashboard_controller.dart';
+import 'package:platemate_user/pages/dashboard/controllers/dashboard_controller.dart';
 import 'package:get/get.dart';
 
 ///

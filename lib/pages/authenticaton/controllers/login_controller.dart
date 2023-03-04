@@ -4,14 +4,12 @@
 
 import 'dart:developer';
 
-import 'package:event_admin/api_services/base_api.dart';
-import 'package:event_admin/app_configs/api_routes.dart';
-import 'package:event_admin/data_models/user.dart';
-import 'package:event_admin/global_controllers/user_controller.dart';
-import 'package:event_admin/utils/app_auth_helper.dart';
-import 'package:event_admin/utils/shared_preference_helper.dart';
-import 'package:event_admin/utils/snackbar_helper.dart';
-import 'package:event_admin/widgets/app_buttons/app_primary_button.dart';
+import 'package:platemate_user/data_models/user.dart';
+import 'package:platemate_user/global_controllers/user_controller.dart';
+import 'package:platemate_user/utils/app_auth_helper.dart';
+import 'package:platemate_user/utils/shared_preference_helper.dart';
+import 'package:platemate_user/utils/snackbar_helper.dart';
+import 'package:platemate_user/widgets/app_buttons/app_primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -4,8 +4,8 @@
 
 import 'dart:convert';
 
-import 'package:event_admin/data_models/city.dart';
-import 'package:event_admin/data_models/user.dart';
+import 'package:platemate_user/data_models/city.dart';
+import 'package:platemate_user/data_models/user.dart';
 
 EventVendor eventVendorFromJson(String str) =>
     EventVendor.fromJson(json.decode(str));

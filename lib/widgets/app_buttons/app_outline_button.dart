@@ -1,4 +1,4 @@
-import 'package:event_admin/app_configs/environment.dart';
+import 'package:platemate_user/app_configs/environment.dart';
 import 'package:flutter/material.dart';
 
 import '../app_loader.dart';

@@ -13,7 +13,7 @@ mixin Environment {
       ? '923972104763-02lsj48gvd91v4rh4ut82n095nprppap.apps.googleusercontent.com'
       : '923972104763-02lsj48gvd91v4rh4ut82n095nprppap.apps.googleusercontent.com';
 
-  static const fontFamily = 'Manrope';
+  static const fontFamily = 'Source Sans Pro';
 
   static const mapApiKey = 'AIzaSyA0MFZxHOCAO0Suy9MRWS0wIg6_FFynHvg';
 

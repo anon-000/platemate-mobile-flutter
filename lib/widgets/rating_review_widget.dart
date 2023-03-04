@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:event_admin/app_configs/app_colors.dart';
+import 'package:platemate_user/app_configs/app_colors.dart';
 
 ///
 /// Created by Auro  on 21/01/22 at 7:31 pm

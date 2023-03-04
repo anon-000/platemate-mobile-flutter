@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:event_admin/app_configs/app_colors.dart';
+import 'package:platemate_user/app_configs/app_colors.dart';
 
 ///
 /// Created by Auro  on 21/01/22 at 9:27 pm

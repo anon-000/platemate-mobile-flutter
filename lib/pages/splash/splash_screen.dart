@@ -1,9 +1,6 @@
-import 'package:event_admin/widgets/my_background.dart';
 import 'package:flutter/material.dart';
-import 'package:event_admin/app_configs/app_assets.dart';
-import 'package:event_admin/app_configs/app_colors.dart';
-import 'package:event_admin/app_configs/app_decorations.dart';
-import 'package:event_admin/utils/app_auth_helper.dart';
+import 'package:platemate_user/app_configs/app_assets.dart';
+import 'package:platemate_user/utils/app_auth_helper.dart';
 import 'package:flutter_svg/svg.dart';
 
 ///
@@ -16,12 +13,22 @@ class SplashPage extends StatefulWidget {
   _SplashPageState createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
+  late Animation _arrowAnimation;
+  late AnimationController _arrowAnimationController;
+
   @override
   void initState() {
     super.initState();
+    _arrowAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 500),
+    );
+    _arrowAnimation =
+        Tween(begin: 0.0, end: 1.0).animate(_arrowAnimationController);
+    _arrowAnimationController.forward();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Future.delayed(Duration(seconds: 1)).then((value) {
+      Future.delayed(Duration(seconds: 2)).then((value) {
         AuthHelper.refreshAccessToken().whenComplete(() {
           AuthHelper.checkUserLevel();
         });
@@ -32,28 +39,28 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffFF945B),
       body: Stack(
         children: [
           Positioned.fill(
-            child: MyBackground(),
+            child: SvgPicture.asset(AppAssets.splashBack),
           ),
           Positioned.fill(
             child: Center(
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 40,
-                ),
-                child: Text(
-                  "Logo",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
+              child: SlideTransition(
+                position: Tween(
+                  begin: Offset(0.0, 0.5),
+                  end: Offset(0.0, 0.0),
+                ).animate(_arrowAnimationController),
+                // position: AlwaysStoppedAnimation(
+                //     Offset(0, -_arrowAnimation.value * 5)),
+                // offset: Offset(0, -_arrowAnimation.value * 40),
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 60),
+                  child: SvgPicture.asset(
+                    AppAssets.splashLogo,
+                    height: 300,
                   ),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
                 ),
               ),
             ),

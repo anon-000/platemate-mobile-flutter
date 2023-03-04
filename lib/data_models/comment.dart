@@ -8,7 +8,7 @@
 
 import 'dart:convert';
 
-import 'package:event_admin/data_models/user.dart';
+import 'package:platemate_user/data_models/user.dart';
 
 CommentDatum commentDatumFromJson(String str) =>
     CommentDatum.fromJson(json.decode(str));

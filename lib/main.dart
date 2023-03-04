@@ -1,9 +1,9 @@
-import 'package:event_admin/pages/splash/splash_screen.dart';
+import 'package:platemate_user/pages/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:event_admin/app_configs/app_theme.dart';
-import 'package:event_admin/utils/shared_preference_helper.dart';
+import 'package:platemate_user/app_configs/app_theme.dart';
+import 'package:platemate_user/utils/shared_preference_helper.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Event Admin',
+      title: 'PlateMate',
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       theme: AppThemes.appTheme,

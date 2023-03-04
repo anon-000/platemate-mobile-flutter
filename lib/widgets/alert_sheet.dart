@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:event_admin/widgets/app_buttons/app_primary_button.dart';
+import 'package:platemate_user/widgets/app_buttons/app_primary_button.dart';
 import 'package:get/get.dart';
 
 Future<bool?> showAppAlertSheet() {

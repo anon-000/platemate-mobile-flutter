@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:event_admin/app_configs/app_assets.dart';
+import 'package:platemate_user/app_configs/app_assets.dart';
 import 'package:flutter_svg/svg.dart';
 
 ///

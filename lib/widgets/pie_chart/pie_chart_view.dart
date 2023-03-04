@@ -2,8 +2,8 @@
 /// Created by Auro on 15/11/22 at 12:53 PM
 ///
 
-import 'package:event_admin/app_configs/app_colors.dart';
-import 'package:event_admin/widgets/pie_chart/pie_chart.dart';
+import 'package:platemate_user/app_configs/app_colors.dart';
+import 'package:platemate_user/widgets/pie_chart/pie_chart.dart';
 import 'package:flutter/material.dart';
 
 class PieChartView extends StatelessWidget {

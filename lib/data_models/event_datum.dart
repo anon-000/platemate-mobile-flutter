@@ -4,9 +4,9 @@
 
 import 'dart:convert';
 
-import 'package:event_admin/data_models/event_type.dart';
-import 'package:event_admin/data_models/sub_event_datum.dart';
-import 'package:event_admin/data_models/user.dart';
+import 'package:platemate_user/data_models/event_type.dart';
+import 'package:platemate_user/data_models/sub_event_datum.dart';
+import 'package:platemate_user/data_models/user.dart';
 
 EventDatum eventDatumFromJson(String str) =>
     EventDatum.fromJson(json.decode(str));

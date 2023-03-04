@@ -7,7 +7,7 @@
 
 import 'dart:convert';
 
-import 'package:event_admin/data_models/chat.dart';
+import 'package:platemate_user/data_models/chat.dart';
 
 ConversationDatum conversationFromJson(String str) =>
     ConversationDatum.fromJson(json.decode(str));

@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:event_admin/api_services/base_api.dart';
-import 'package:event_admin/app_configs/api_routes.dart';
-import 'package:event_admin/data_models/stats_datum.dart';
+import 'package:platemate_user/api_services/base_api.dart';
+import 'package:platemate_user/app_configs/api_routes.dart';
+import 'package:platemate_user/data_models/stats_datum.dart';
 import 'package:get/get.dart';
 
 ///

@@ -1,19 +1,19 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:device_info/device_info.dart';
-import 'package:event_admin/pages/authenticaton/login/login_page.dart';
+import 'package:platemate_user/pages/authenticaton/login/login_page.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:event_admin/api_services/base_api.dart';
-import 'package:event_admin/app_configs/api_routes.dart';
-import 'package:event_admin/app_configs/environment.dart';
-import 'package:event_admin/data_models/user.dart';
-import 'package:event_admin/global_controllers/user_controller.dart';
-import 'package:event_admin/pages/dashboard/dashboard_page.dart';
-import 'package:event_admin/utils/shared_preference_helper.dart';
+import 'package:platemate_user/api_services/base_api.dart';
+import 'package:platemate_user/app_configs/api_routes.dart';
+import 'package:platemate_user/app_configs/environment.dart';
+import 'package:platemate_user/data_models/user.dart';
+import 'package:platemate_user/global_controllers/user_controller.dart';
+import 'package:platemate_user/pages/dashboard/dashboard_page.dart';
+import 'package:platemate_user/utils/shared_preference_helper.dart';
 import 'package:get/get.dart';
 
 import 'snackbar_helper.dart';

@@ -2,7 +2,7 @@
 /// Created by Auro on 28/11/22 at 12:19 AM
 ///
 
-import 'package:event_admin/app_configs/app_colors.dart';
+import 'package:platemate_user/app_configs/app_colors.dart';
 import 'package:flutter/material.dart';
 
 ///

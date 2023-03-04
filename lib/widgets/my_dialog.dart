@@ -1,4 +1,4 @@
-import 'package:event_admin/widgets/my_background.dart';
+import 'package:platemate_user/widgets/my_background.dart';
 import 'package:flutter/material.dart';
 
 ///

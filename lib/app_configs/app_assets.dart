@@ -10,11 +10,13 @@ mixin AppAssets {
   static const String logoPng = 'assets/icons/logo.png';
   static const String back = 'assets/icons/back.svg';
 
-  static const String splashBack = 'assets/icons/splash_back.png';
+  static const String splashBack = 'assets/icons/splash_back.svg';
+  static const String splashLogo = 'assets/icons/splash_logo.svg';
   static const String city = 'assets/icons/cities/cuttack.svg';
   static const String search = 'assets/icons/search.svg';
   static const String notification = 'assets/icons/notification.svg';
   static const String cart = 'assets/icons/cart.svg';
+  static const String key = 'assets/icons/eye.svg';
 
   static const String home_enabled = 'assets/icons/home_enabled.svg';
   static const String home_disabled = 'assets/icons/home_disabled.svg';
@@ -30,29 +32,23 @@ mixin AppAssets {
       'assets/icons/subscription_disabled.svg';
   static const String profile_enabled = 'assets/icons/profile_enabled.svg';
   static const String profile_disabled = 'assets/icons/profile_disabled.svg';
-  static const String call = 'assets/icons/call.svg';
+  static const String login = 'assets/icons/login.png';
   static const String google = 'assets/icons/google.svg';
   static const String fb = 'assets/icons/fb.svg';
   static const String apple = 'assets/icons/apple.svg';
   static const String profile = 'assets/icons/profile.svg';
   static const String add_fav = 'assets/icons/add_fav.svg';
   static const String intro = 'assets/icons/intro.png';
-  static const String like = 'assets/icons/like.svg';
-  static const String comment = 'assets/icons/comment.svg';
-  static const String edit = 'assets/icons/edit.svg';
-  static const String edit_new = 'assets/icons/edit_new.svg';
-  static const String co_host = 'assets/icons/co_host.svg';
-  static const String budget_png = 'assets/icons/budget.png';
-  static const String co_host_png = 'assets/icons/co_host.png';
-  static const String date_png = 'assets/icons/date.png';
-  static const String guest_png = 'assets/icons/guest.png';
-  static const String sub_event_png = 'assets/icons/sub_event.png';
-  static const String vendor_png = 'assets/icons/vendor.png';
+  static const String back_button = 'assets/icons/back.svg';
+  static const String img_placeholder = 'assets/icons/image_placeholder.svg';
   static const String filter = 'assets/icons/filter.svg';
   static const String faq = 'assets/icons/faq.svg';
   static const String feedback = 'assets/icons/feedback.svg';
   static const String logout = 'assets/icons/log_out.svg';
-  static const String demoProfile = 'https://beststatus.net/wp-content/uploads/2022/01/Kgf-Dp-Whatsapp-DP-2-300x300.jpg';
+  static const String check_enabled = 'assets/icons/check_enabled.svg';
+  static const String check_disabled = 'assets/icons/check_disabled.svg';
+  static const String demoProfile =
+      'https://beststatus.net/wp-content/uploads/2022/01/Kgf-Dp-Whatsapp-DP-2-300x300.jpg';
   static const String demoIconImageCake =
       'https://i.pinimg.com/originals/5b/49/c8/5b49c86ba30c3df81751388908e09239.png';
   static const String demoBgImageBalloons =

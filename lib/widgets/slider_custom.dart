@@ -131,7 +131,7 @@ class GradientRectSliderTrackShape extends SliderTrackShape
     required Offset thumbCenter,
     bool isDiscrete = false,
     bool isEnabled = false,
-    double additionalActiveTrackHeight = 2,
+    double additionalActiveTrackHeight = 1,
   }) {
     assert(sliderTheme.disabledActiveTrackColor != null);
     assert(sliderTheme.disabledInactiveTrackColor != null);

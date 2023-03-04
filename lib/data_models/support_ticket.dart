@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:event_admin/data_models/user.dart';
+import 'package:platemate_user/data_models/user.dart';
 
 SupportTicket supportTicketFromJson(String str) =>
     SupportTicket.fromJson(json.decode(str));

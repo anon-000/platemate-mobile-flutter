@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:event_admin/api_services/base_api.dart';
-import 'package:event_admin/app_configs/api_routes.dart';
-import 'package:event_admin/data_models/user.dart';
-import 'package:event_admin/utils/shared_preference_helper.dart';
-import 'package:event_admin/utils/snackbar_helper.dart';
+import 'package:platemate_user/api_services/base_api.dart';
+import 'package:platemate_user/app_configs/api_routes.dart';
+import 'package:platemate_user/data_models/user.dart';
+import 'package:platemate_user/utils/shared_preference_helper.dart';
+import 'package:platemate_user/utils/snackbar_helper.dart';
 import 'package:get/get.dart';
 
 ///

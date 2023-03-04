@@ -36,7 +36,7 @@ mixin AppDecorations {
   );
 
   static InputDecoration textFieldDecoration(BuildContext context,
-      {double radius = 8}) {
+      {double radius = 12}) {
     return InputDecoration(
         // fillColor: Colors.grey.shade200,
         filled: false,

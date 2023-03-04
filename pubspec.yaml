@@ -1,4 +1,4 @@
-name: event_admin
+name: platemate_user
 description: A new Flutter application.
 publish_to: "none"
 version: 1.0.0+1
@@ -69,13 +69,13 @@ flutter:
   fonts:
     - family: Manrope
       fonts:
-        - asset: assets/fonts/Manrope-Regular.ttf
+        - asset: assets/fonts/SourceSansPro-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Manrope-Medium.ttf
+        - asset: assets/fonts/SourceSansPro-SemiBold.ttf
           weight: 500
-        - asset: assets/fonts/Manrope-SemiBold.ttf
+        - asset: assets/fonts/SourceSansPro-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/Manrope-Bold.ttf
+        - asset: assets/fonts/SourceSansPro-Bold.ttf
           weight: 700
 
 flutter_intl:

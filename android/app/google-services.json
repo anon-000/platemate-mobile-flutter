@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:923972104763:android:88d94f1bff3275fe24e21e",
         "android_client_info": {
-          "package_name": "com.festabash.admin"
+          "package_name": "com.platemate.user"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "923972104763-m7arq3uucvt4fkdbm9cgafetgd1rhvuh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.festabash.admin",
+            "package_name": "com.platemate.user",
             "certificate_hash": "9c8bfec9602536f32b00e0dde4d4321ad329e342"
           }
         },

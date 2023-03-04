@@ -8,7 +8,7 @@
 
 import 'dart:convert';
 
-import 'package:event_admin/data_models/user.dart';
+import 'package:platemate_user/data_models/user.dart';
 
 VendorRating vendorRatingFromJson(String str) =>
     VendorRating.fromJson(json.decode(str));

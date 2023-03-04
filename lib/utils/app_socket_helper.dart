@@ -3,10 +3,8 @@
 ///
 
 import 'dart:developer';
-import 'package:event_admin/data_models/support_chat.dart';
-import 'package:event_admin/pages/support/controllers/all_chats_controller.dart';
-import 'package:event_admin/utils/shared_preference_helper.dart';
-import 'package:get/get.dart';
+import 'package:platemate_user/data_models/support_chat.dart';
+import 'package:platemate_user/utils/shared_preference_helper.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 import '../app_configs/environment.dart';
 
@@ -60,13 +58,13 @@ mixin AppSocketHelper {
       try {
         final chatDatum = SupportChat.fromJson(data);
 
-        if (Get.isRegistered<AllChatsController>()) {
-          final chatsController = Get.find<AllChatsController>();
-          if (chatDatum.createdBy!.id !=
-              SharedPreferenceHelper.user!.user!.id) {
-            chatsController.addDatum(chatDatum);
-          }
-        }
+        // if (Get.isRegistered<AllChatsController>()) {
+        //   final chatsController = Get.find<AllChatsController>();
+        //   if (chatDatum.createdBy!.id !=
+        //       SharedPreferenceHelper.user!.user!.id) {
+        //     chatsController.addDatum(chatDatum);
+        //   }
+        // }
       } catch (e, s) {
         log('$e $s');
       }

@@ -1,9 +1,8 @@
-import 'package:event_admin/app_configs/app_decorations.dart';
-import 'package:event_admin/pages/events/create_event_page.dart';
+import 'package:platemate_user/app_configs/app_decorations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:event_admin/app_configs/app_assets.dart';
-import 'package:event_admin/pages/dashboard/dashboard_page.dart';
+import 'package:platemate_user/app_configs/app_assets.dart';
+import 'package:platemate_user/pages/dashboard/dashboard_page.dart';
 import 'package:get/get.dart';
 import 'dart:ui' as ui;
 

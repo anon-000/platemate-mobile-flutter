@@ -8,9 +8,9 @@
 
 import 'dart:convert';
 
-import 'package:event_admin/data_models/category.dart';
-import 'package:event_admin/data_models/event_vendor.dart';
-import 'package:event_admin/data_models/sub_event_datum.dart';
+import 'package:platemate_user/data_models/category.dart';
+import 'package:platemate_user/data_models/event_vendor.dart';
+import 'package:platemate_user/data_models/sub_event_datum.dart';
 
 BudgetDatum budgetDatumFromJson(String str) =>
     BudgetDatum.fromJson(json.decode(str));

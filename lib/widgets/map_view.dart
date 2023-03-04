@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'package:event_admin/app_configs/app_colors.dart';
+import 'package:platemate_user/app_configs/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 
 class SnackBarHelper {
   static const platform =
-      MethodChannel('com.festabash.admin/toast');
+      MethodChannel('com.platemate.user/toast');
 
   static Future<void> show(String message, {isLong = false}) async {
     await platform

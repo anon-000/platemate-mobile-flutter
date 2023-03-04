@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:event_admin/app_configs/api_routes.dart';
-import 'package:event_admin/app_configs/environment.dart';
-import 'package:event_admin/data_models/rest_error.dart';
-import 'package:event_admin/utils/app_auth_helper.dart';
-import 'package:event_admin/utils/shared_preference_helper.dart';
+import 'package:platemate_user/app_configs/api_routes.dart';
+import 'package:platemate_user/app_configs/environment.dart';
+import 'package:platemate_user/data_models/rest_error.dart';
+import 'package:platemate_user/utils/app_auth_helper.dart';
+import 'package:platemate_user/utils/shared_preference_helper.dart';
 import 'package:http_parser/http_parser.dart' as p;
 
 ///
