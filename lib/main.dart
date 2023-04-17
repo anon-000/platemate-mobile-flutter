@@ -1,22 +1,32 @@
-import 'package:platemate_user/pages/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/services.dart';
+import 'package:platemate_user/pages/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:platemate_user/app_configs/app_theme.dart';
+import 'package:platemate_user/utils/notification_services/in_app_notification.dart';
 import 'package:platemate_user/utils/shared_preference_helper.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'app_configs/app_page_routes.dart';
 import 'generated/l10n.dart';
+
+Future<dynamic> _firebaseMessagingBackgroundHandler(
+    RemoteMessage message) async {
+  await Firebase.initializeApp();
+  //return backgroundMessageHandler(message);
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferenceHelper.preferences = await SharedPreferences.getInstance();
-
-  /// Setup for notification services
-  // InAppNotification.configureInAppNotification();
-  await Firebase.initializeApp();
+  await InAppNotification.configureInAppNotification();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(MyApp());
 }
 

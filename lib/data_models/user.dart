@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:platemate_user/data_models/taste_preference.dart';
+
 UserResponse userResponseFromJson(String str) =>
     UserResponse.fromJson(json.decode(str));
 
@@ -45,6 +47,7 @@ class User {
       this.userDetails,
       this.newUserLogin,
       this.email,
+      this.tastePreference,
       this.avatar});
 
   String id;
@@ -58,6 +61,7 @@ class User {
   bool? newUserLogin;
   String? email;
   String? avatar;
+  TastePreference? tastePreference;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["_id"],
@@ -71,10 +75,11 @@ class User {
         updatedAt: json["updatedAt"] != null
             ? DateTime.parse(json["updatedAt"]).toLocal()
             : null,
-        userDetails:
-            json["userDetails"] != null && json['userDetails'] is! String
-                ? UserDetails.fromJson(json["userDetails"])
-                : null,
+        tastePreference: json["tastePreference"] == null
+            ? null
+            : TastePreference.fromJson(json["tastePreference"] is String
+                ? {"_id": json["tastePreference"]}
+                : json["tastePreference"]),
         newUserLogin: json["newUserLogin"] ?? false,
         email: json["email"] ?? '',
         avatar: json["avatar"] ?? '',
@@ -88,7 +93,8 @@ class User {
         "status": status,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
-        "userDetails": userDetails?.toJson(),
+        "tastePreference":
+            tastePreference == null ? null : tastePreference?.toJson(),
         "newUserLogin": newUserLogin,
         "email": email,
         'avatar': avatar

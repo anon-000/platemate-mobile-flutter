@@ -3,7 +3,6 @@
 ///
 
 import 'dart:developer';
-import 'package:platemate_user/data_models/support_chat.dart';
 import 'package:platemate_user/utils/shared_preference_helper.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 import '../app_configs/environment.dart';
@@ -56,7 +55,7 @@ mixin AppSocketHelper {
     socket.on(SUPPORT_CHAT_CREATED, (data) {
       log("CHAT_CREATED ========>>> ${data["_id"]}");
       try {
-        final chatDatum = SupportChat.fromJson(data);
+        // final chatDatum = SupportChat.fromJson(data);
 
         // if (Get.isRegistered<AllChatsController>()) {
         //   final chatsController = Get.find<AllChatsController>();

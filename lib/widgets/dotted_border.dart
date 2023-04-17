@@ -1,10 +1,7 @@
-///
-/// Created by Auro on 18/10/22 at 8:17 PM
-///
-
 
 import 'package:flutter/material.dart';
 import 'package:path_drawing/path_drawing.dart';
+typedef PathBuilder = Path Function(Size);
 
 /// Add a dotted border around any [child] widget. The [strokeWidth] property
 /// defines the width of the dashed border and [color] determines the stroke
@@ -15,6 +12,7 @@ import 'package:path_drawing/path_drawing.dart';
 class DottedBorder extends StatelessWidget {
   final Widget child;
   final EdgeInsets padding;
+  final EdgeInsets borderPadding;
   final double strokeWidth;
   final Color color;
   final List<double> dashPattern;
@@ -30,6 +28,7 @@ class DottedBorder extends StatelessWidget {
     this.borderType = BorderType.Rect,
     this.dashPattern = const <double>[3, 1],
     this.padding = const EdgeInsets.all(2),
+    this.borderPadding = EdgeInsets.zero,
     this.radius = const Radius.circular(0),
     this.strokeCap = StrokeCap.butt,
     this.customPath,
@@ -44,6 +43,7 @@ class DottedBorder extends StatelessWidget {
         Positioned.fill(
           child: CustomPaint(
             painter: _DashPainter(
+              padding: borderPadding,
               strokeWidth: strokeWidth,
               radius: radius,
               color: color,
@@ -77,7 +77,9 @@ class DottedBorder extends StatelessWidget {
 /// The different supported BorderTypes
 enum BorderType { Circle, RRect, Rect, Oval }
 
-typedef PathBuilder = Path Function(Size);
+
+
+
 
 class _DashPainter extends CustomPainter {
   final double strokeWidth;
@@ -87,6 +89,7 @@ class _DashPainter extends CustomPainter {
   final Radius radius;
   final StrokeCap strokeCap;
   final PathBuilder? customPath;
+  final EdgeInsets padding;
 
   _DashPainter({
     this.strokeWidth = 2,
@@ -96,12 +99,24 @@ class _DashPainter extends CustomPainter {
     this.radius = const Radius.circular(0),
     this.strokeCap = StrokeCap.butt,
     this.customPath,
+    this.padding = EdgeInsets.zero,
   }) {
     assert(dashPattern.isNotEmpty, 'Dash Pattern cannot be empty');
   }
 
   @override
-  void paint(Canvas canvas, Size size) {
+  void paint(Canvas canvas, Size originalSize) {
+    final Size size;
+    if (padding == EdgeInsets.zero) {
+      size = originalSize;
+    } else {
+      canvas.translate(padding.left, padding.top);
+      size = Size(
+        originalSize.width - padding.horizontal,
+        originalSize.height - padding.vertical,
+      );
+    }
+
     Paint paint = Paint()
       ..strokeWidth = strokeWidth
       ..color = color
@@ -153,7 +168,7 @@ class _DashPainter extends CustomPainter {
         RRect.fromRectAndRadius(
           Rect.fromLTWH(
             w > s ? (w - s) / 2 : 0,
-            h > s ? (h - s / 2) : 0,
+            h > s ? (h - s) / 2 : 0,
             s,
             s,
           ),
@@ -209,6 +224,7 @@ class _DashPainter extends CustomPainter {
     return oldDelegate.strokeWidth != this.strokeWidth ||
         oldDelegate.color != this.color ||
         oldDelegate.dashPattern != this.dashPattern ||
+        oldDelegate.padding != this.padding ||
         oldDelegate.borderType != this.borderType;
   }
 }

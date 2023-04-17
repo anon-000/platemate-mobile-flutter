@@ -4,6 +4,8 @@ import 'package:platemate_user/pages/authenticaton/onboarding/preferences_first_
 import 'package:platemate_user/pages/authenticaton/onboarding/preferences_second_page.dart';
 import 'package:platemate_user/pages/authenticaton/signup/signup_page.dart';
 import 'package:platemate_user/pages/dashboard/dashboard_page.dart';
+import 'package:platemate_user/pages/demo/create_footprint_page.dart';
+import 'package:platemate_user/pages/restaurant_details/restaurant_details_page.dart';
 import 'package:platemate_user/pages/splash/splash_screen.dart';
 import 'package:platemate_user/pages/web_view/web_view_page.dart';
 import 'package:get/get.dart';
@@ -30,6 +32,14 @@ class AppPages {
     GetPage(
       name: WebViewPage.routeName,
       page: () => WebViewPage(),
+    ),
+    GetPage(
+      name: CreateFootPrintsPage.routeName,
+      page: () => CreateFootPrintsPage(),
+    ),
+    GetPage(
+      name: RestaurantDetailsPage.routeName,
+      page: () => RestaurantDetailsPage(),
     ),
     GetPage(
       name: DashboardPage.routeName,

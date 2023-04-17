@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:platemate_user/app_configs/app_assets.dart';
 import 'package:platemate_user/utils/app_auth_helper.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -16,6 +15,11 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   late Animation _arrowAnimation;
   late AnimationController _arrowAnimationController;
+  final backGround = SvgPicture.asset("assets/icons/splash_back.svg");
+  final logo = SvgPicture.asset(
+    "assets/icons/splash_logo.svg",
+    height: 300,
+  );
 
   @override
   void initState() {
@@ -43,16 +47,13 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       body: Stack(
         children: [
           Positioned.fill(
-            child: SvgPicture.asset(AppAssets.splashBack),
+            child: backGround,
           ),
           Positioned.fill(
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 60),
-                child: SvgPicture.asset(
-                  AppAssets.splashLogo,
-                  height: 300,
-                ),
+                child: logo,
               ),
             ),
           ),

@@ -6,12 +6,12 @@ mixin Environment {
       String.fromEnvironment("env", defaultValue: 'dev');
 
   static const String baseApiUrl = environment == 'prod'
-      ? 'https://api.test.festabash.com'
-      : 'https://api.test.festabash.com';
+      ? 'http://192.168.29.123:3030'
+      : 'http://192.168.29.123:3030';
 
   static const googleClientId = environment == 'prod'
-      ? '923972104763-02lsj48gvd91v4rh4ut82n095nprppap.apps.googleusercontent.com'
-      : '923972104763-02lsj48gvd91v4rh4ut82n095nprppap.apps.googleusercontent.com';
+      ? '1047854581243-s0re1r4vnt3lp6qubochtdgv2knv9sv5.apps.googleusercontent.com'
+      : '1047854581243-s0re1r4vnt3lp6qubochtdgv2knv9sv5.apps.googleusercontent.com';
 
   static const fontFamily = 'Source Sans Pro';
 

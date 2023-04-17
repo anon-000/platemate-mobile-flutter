@@ -2,8 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Platemate Mobile</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -11,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>vridoo_user</string>
+	<string>platemate_mobile</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -21,6 +25,8 @@
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -42,14 +48,4 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
-    <key>NSCameraUsageDescription</key>
-	<string>Allow camera permission to capture photo?</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>We Get Your Location to Customise your feeds</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>We Get Your Location to Customise your feeds</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>We Get Your Location to Customise your feeds</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>You must agree with the photo album to see your pictures</string>
 </plist>

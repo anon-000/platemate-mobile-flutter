@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "923972104763",
-    "project_id": "event-app-51ad4",
-    "storage_bucket": "event-app-51ad4.appspot.com"
+    "project_number": "1047854581243",
+    "project_id": "platemate-ff89d",
+    "storage_bucket": "platemate-ff89d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:923972104763:android:88d94f1bff3275fe24e21e",
+        "mobilesdk_app_id": "1:1047854581243:android:0a5a630f205f8bd1beb75e",
         "android_client_info": {
           "package_name": "com.platemate.user"
         }
       },
       "oauth_client": [
         {
-          "client_id": "923972104763-m7arq3uucvt4fkdbm9cgafetgd1rhvuh.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.platemate.user",
-            "certificate_hash": "9c8bfec9602536f32b00e0dde4d4321ad329e342"
-          }
-        },
-        {
-          "client_id": "923972104763-02lsj48gvd91v4rh4ut82n095nprppap.apps.googleusercontent.com",
+          "client_id": "1047854581243-s0re1r4vnt3lp6qubochtdgv2knv9sv5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCd258VWua4trB8n90eG3mrGcFTZ4U9C7I"
+          "current_key": "AIzaSyDLv8gxAUk5PxdwQlxEAFOAyp3MW9YhN8E"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "923972104763-02lsj48gvd91v4rh4ut82n095nprppap.apps.googleusercontent.com",
+              "client_id": "1047854581243-s0re1r4vnt3lp6qubochtdgv2knv9sv5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

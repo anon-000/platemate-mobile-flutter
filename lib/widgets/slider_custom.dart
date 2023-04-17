@@ -89,6 +89,7 @@ class MySliderTrackShape extends SliderTrackShape {
       required Offset thumbCenter,
       bool? isEnabled,
       bool? isDiscrete,
+      Offset? secondaryOffset,
       required TextDirection textDirection}) {
     final Canvas canvas = context.canvas;
 
@@ -132,6 +133,7 @@ class GradientRectSliderTrackShape extends SliderTrackShape
     bool isDiscrete = false,
     bool isEnabled = false,
     double additionalActiveTrackHeight = 1,
+    Offset? secondaryOffset,
   }) {
     assert(sliderTheme.disabledActiveTrackColor != null);
     assert(sliderTheme.disabledInactiveTrackColor != null);

@@ -7,6 +7,7 @@ import 'package:platemate_user/app_configs/app_validators.dart';
 import 'package:platemate_user/app_configs/environment.dart';
 import 'package:platemate_user/pages/authenticaton/controllers/login_controller.dart';
 import 'package:platemate_user/pages/authenticaton/signup/signup_page.dart';
+import 'package:platemate_user/pages/demo/create_footprint_page.dart';
 import 'package:platemate_user/widgets/app_buttons/app_primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -136,8 +137,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 28),
                   AppPrimaryButton(
+                    key: _controller.buttonKey,
                     child: Text("Login"),
-                    onPressed: () {},
+                    onPressed: _controller.proceed,
                   ),
                   const SizedBox(height: 20),
                   RichText(
@@ -216,7 +218,9 @@ class _LoginPageState extends State<LoginPage> {
                       Expanded(
                         child: SocialIconButton(
                           asset: AppAssets.google,
-                          onTap: () {},
+                          onTap: () {
+                            Get.toNamed(CreateFootPrintsPage.routeName);
+                          },
                         ),
                       ),
                       const SizedBox(width: 20),

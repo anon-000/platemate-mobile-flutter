@@ -54,7 +54,7 @@ class LoginController extends GetxController {
     update();
   }
 
-  void proceed() async{
+  void proceed() async {
     if (_email.isEmpty) {
       emailErr = "Email id is required";
       update();
@@ -77,9 +77,6 @@ class LoginController extends GetxController {
       autoValidateMode.value = AutovalidateMode.always;
     } else {
       state.save();
-      // print("phone - $_email : password - $_password");
-      // final ers = await ApiCall.get(ApiRoutes.event_type, isAuthNeeded: false);
-      // log("$ers");
       buttonKey.currentState?.showLoader();
       AuthHelper.userLoginWithEmail(_email, _password).then((value) {
         final String accessToken = value['accessToken'];
