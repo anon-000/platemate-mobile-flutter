@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-showEventDialog(
+showMyDialog(
     {String title = '',
     String? description,
     String positiveText = 'Yes',

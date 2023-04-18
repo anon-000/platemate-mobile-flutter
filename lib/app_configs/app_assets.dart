@@ -51,6 +51,14 @@ mixin AppAssets {
   static const String order = 'assets/icons/order.svg';
   static const String qr_scanner = 'assets/icons/qr_scanner.svg';
   static const String veg = 'assets/icons/veg.svg';
+  static const String about_us = 'assets/icons/about_us.svg';
+  static const String contact = 'assets/icons/contact.svg';
+  static const String fav = 'assets/icons/fav.svg';
+  static const String privacy = 'assets/icons/privacy_policy.svg';
+  static const String rate = 'assets/icons/rate.svg';
+  static const String taste = 'assets/icons/taste.svg';
+  static const String terms = 'assets/icons/terms.svg';
+  static const String log_out = 'assets/icons/log_out.svg';
 
   ///
   static const String demoProfile =

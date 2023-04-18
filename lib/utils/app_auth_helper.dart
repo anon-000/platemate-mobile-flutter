@@ -323,12 +323,20 @@ class AuthHelper {
   }
 
   static Future<String?> refreshAccessToken() async {
+    final fcmId = await FirebaseMessaging.instance.getToken();
+    // final fcmId = "345545644sffdsfdsdsssffsdf1dssdfse";
+    final deviceInfo = await getDeviceDetails();
     if (SharedPreferenceHelper.user == null) return null;
     final String? oldToken = SharedPreferenceHelper.user?.accessToken;
     if (oldToken?.isEmpty ?? true) return null;
     final result = await ApiCall.post(
       ApiRoutes.authenticateJwt,
-      body: {'accessToken': oldToken},
+      body: {
+        'accessToken': oldToken,
+        "fcmId": fcmId,
+        "deviceId": deviceInfo['deviceId'],
+        "deviceType": deviceInfo['deviceType'],
+      },
     );
     final String accessToken = result.data['accessToken'];
     final user = UserResponse.fromJson(result.data);

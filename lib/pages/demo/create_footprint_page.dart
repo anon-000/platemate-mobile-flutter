@@ -61,7 +61,7 @@ class _CreateFootPrintsPageState extends State<CreateFootPrintsPage> {
     } else if (status == ph.PermissionStatus.permanentlyDenied) {
       //throw('Take the user to the settings page.');
 
-      showEventDialog(
+      showMyDialog(
           title:
               "Location permissions are denied. Go to settings and permit us to get your location.",
           positiveText: "Open settings",
