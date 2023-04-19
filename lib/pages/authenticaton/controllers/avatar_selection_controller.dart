@@ -1,8 +1,11 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:platemate_user/api_services/base_api.dart';
 import 'package:platemate_user/pages/authenticaton/onboarding/preferences_first_page.dart';
+import 'package:platemate_user/utils/app_auth_helper.dart';
 import 'package:platemate_user/utils/snackbar_helper.dart';
 
 import '../../../widgets/app_buttons/app_primary_button.dart';
@@ -45,10 +48,19 @@ class AvatarSelectionController extends GetxController {
   }
 
   void proceed() async {
-    if (image == null) {
-      SnackBarHelper.show("Please select an avatar to proceed");
-      return;
+    if (image != null) {
+      try {
+        buttonKey.currentState?.showLoader();
+        final url = await ApiCall.singleFileUpload(image!);
+        await AuthHelper.updateUser({"avatar": url});
+        buttonKey.currentState?.hideLoader();
+        SnackBarHelper.show("Profile picture updated");
+        AuthHelper.checkUserLevel();
+      } catch (e, s) {
+        log("Signup_Page", error: e, stackTrace: s);
+        SnackBarHelper.show(e.toString());
+        buttonKey.currentState?.hideLoader();
+      }
     }
-    Get.toNamed(PreferencesFirstPage.routeName);
   }
 }

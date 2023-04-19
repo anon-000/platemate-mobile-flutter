@@ -22,22 +22,6 @@ mixin ApiRoutes {
   static const String authenticatePhone = "$v1/authenticate-phone";
   static const String phoneVerification = "$v1/phone-verification";
   static const String city = "$v1/city";
-  static const String event_management = "$v1/event-management/event";
-  static const String event_type = "$v1/event-management/event-type";
-  static const String gallery = "$v1/event-management/event-feed";
-  static const String posts = "$v1/post";
-  static const String cohosts = "$v1/event-management/event-cohost";
-  static const String guests = "$v1/event-management/event-guest";
-  static const String sub_events = "$v1/sub-event-management/sub-event";
-  static const String events = "$v1/event-management/event";
-  static const String me_events = "$v1/event-management/event";
-  static const String category = "$v1/category";
-  static const String sub_category = "$v1/category-child";
-  static const String invited_events = "$v1/event-management/invited-events";
-  static const String vendors = "$v1/vendor-management/vendor";
-  static const String event_vendor = "$v1/event-management/event-vendor";
-  static const String vendor_packages = "$v1/vendor-management/vendor-package";
-  static const String vendor_ratings = "$v1/rating";
   static const String social_login = "$v1/login/social-login";
   static const String event_budget = "$v1/event-management/event-budget";
   static const String sub_event_budget =
@@ -50,4 +34,6 @@ mixin ApiRoutes {
   static const String comments = "$v1/comment";
   static const String booking_distribution = "$v1/dashboard/admin/booking-distribution";
   static const String statistics = "$v1/dashboard/admin/booking";
+  static const String cuisines = "$v1/cuisines";
+  static const String tastePreferences = "$v1/taste-preference";
 }

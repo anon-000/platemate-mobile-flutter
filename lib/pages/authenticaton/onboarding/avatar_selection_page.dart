@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:platemate_user/global_controllers/user_controller.dart';
 import 'package:platemate_user/pages/authenticaton/controllers/avatar_selection_controller.dart';
+import 'package:platemate_user/pages/authenticaton/login/login_page.dart';
+import 'package:platemate_user/pages/authenticaton/onboarding/preferences_first_page.dart';
+import 'package:platemate_user/utils/dialog_helper.dart';
+import 'package:platemate_user/utils/shared_preference_helper.dart';
 
 import '../../../app_configs/app_assets.dart';
 import '../../../app_configs/app_colors.dart';
@@ -46,6 +51,15 @@ class _AvatarSelectionPageState extends State<AvatarSelectionPage> {
           onPressed: () => Get.back(),
           icon: SvgPicture.asset(AppAssets.back_button),
         ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Get.offAllNamed(PreferencesFirstPage.routeName);
+            },
+            child: Text("Skip", style: TextStyle(fontSize: 16)),
+          ),
+          const SizedBox(width: 16),
+        ],
       ),
       body: SafeArea(
         child: Column(
@@ -110,13 +124,18 @@ class _AvatarSelectionPageState extends State<AvatarSelectionPage> {
                 ),
               ),
             ),
-            SizedBox(
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: AppPrimaryButton(
-                  child: Text("Next".toUpperCase()),
-                  onPressed: _controller.proceed,
+            GetBuilder(
+              init: _controller,
+              builder: (c) => SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: AppPrimaryButton(
+                    key: _controller.buttonKey,
+                    child: Text("Next".toUpperCase()),
+                    onPressed:
+                        _controller.image == null ? null : _controller.proceed,
+                  ),
                 ),
               ),
             ),

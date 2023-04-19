@@ -174,6 +174,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                   const SizedBox(height: 28),
                   AppPrimaryButton(
+                    key: _controller.buttonKey,
                     child: Text("Create Account".toUpperCase()),
                     onPressed: _controller.proceed,
                   ),

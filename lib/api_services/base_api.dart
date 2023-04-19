@@ -145,7 +145,9 @@ class ApiCall {
   /// Single file upload
   /// Single file upload
   static Future<String?> singleFileUpload(File file,
-      {String path = ApiRoutes.upload, bool isPdf = false}) async {
+      {String path = ApiRoutes.upload,
+      bool isPdf = false,
+      String purpose = "profile"}) async {
     try {
       print("$path : $isPdf");
       final Dio dio = Dio();
@@ -160,12 +162,13 @@ class ApiCall {
                 filename: file.path.split('/').last,
                 contentType: isPdf
                     ? p.MediaType('application', 'pdf')
-                    : p.MediaType('image', 'jpeg'))
+                    : p.MediaType('image', 'jpeg')),
+            "purpose": purpose,
           }));
 
       log("base api log : $response");
 
-      return response.data[0]["link"];
+      return response.data[0]["filePath"];
     } on SocketException {
       throw NoInternetError();
     } catch (error) {

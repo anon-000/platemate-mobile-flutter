@@ -6,6 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:platemate_user/pages/authenticaton/onboarding/preferences_first_page.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:platemate_user/api_services/base_api.dart';
 import 'package:platemate_user/app_configs/api_routes.dart';
@@ -30,10 +31,10 @@ class AuthHelper {
       "strategy": "local",
       "email": "$email",
       "password": "$password",
-      'role': 1,
-      // "fcmId": "$fcmId",
-      // "deviceId": deviceInfo['deviceId'],
-      //"coordinates": [85.2456, 25.3654]
+      "deviceId": deviceInfo['deviceId'],
+      "deviceType": deviceInfo['deviceType'],
+      "deviceName": deviceInfo['deviceName'],
+      "fcmId": fcmId,
     };
     final result = await ApiCall.post(
       ApiRoutes.authenticateEmail,
@@ -101,8 +102,11 @@ class AuthHelper {
   }
 
   /// register user
-  static Future<UserResponse> registerUser(
-      String name, String email, String token) async {
+  static Future<dynamic> registerUser(
+    String name,
+    String email,
+    String password,
+  ) async {
     final fcmId = await FirebaseMessaging.instance.getToken();
     // final Position latLng = await CheckPermissions.getCurrentLocation();
 
@@ -111,24 +115,20 @@ class AuthHelper {
 
     Map<String, dynamic> body = {
       "role": 3,
-      "registrationToken": token,
       "name": name,
       "email": email,
-      // "phone": phone,
-      // "otp": otp,
-      // "platform": deviceInfo['deviceType'],
+      "password": password,
+      "deviceId": deviceInfo['deviceId'],
+      "deviceType": deviceInfo['deviceType'],
+      "deviceName": deviceInfo['deviceName'],
       "fcmId": fcmId,
-      // "deviceId": deviceInfo['deviceId'],
-      // "deviceType": deviceInfo['deviceType'],
-      // "deviceName": deviceInfo['deviceName'],
-      // "role": 1,
     };
     final result = await ApiCall.post(
       ApiRoutes.user,
       body: body,
       isAuthNeeded: false,
     );
-    return UserResponse.fromJson(result.data);
+    return result.data;
   }
 
   static Future<Map<String, dynamic>> getDeviceDetails() async {
@@ -252,7 +252,6 @@ class AuthHelper {
             ? Get.find<UserController>()
             : Get.put<UserController>(UserController(), permanent: true);
         userController.updateUser(userResponse.user);
-
         return userResponse;
       default:
         return null;
@@ -315,10 +314,12 @@ class AuthHelper {
       {String? parentPath, String? phone}) async {
     final user = SharedPreferenceHelper.user;
 
-    if (user != null) {
-      Get.offAllNamed(DashboardPage.routeName);
-    } else {
+    if (user == null) {
       Get.offAllNamed(LoginPage.routeName);
+    } else if (user.user!.tastePreference == null) {
+      Get.offAllNamed(PreferencesFirstPage.routeName);
+    } else {
+      Get.offAllNamed(DashboardPage.routeName);
     }
   }
 
@@ -362,7 +363,6 @@ class AuthHelper {
     final user = User.fromJson(result.data);
     u.user = user;
     SharedPreferenceHelper.storeUser(user: u);
-
     final userController = Get.isRegistered()
         ? Get.find<UserController>()
         : Get.put<UserController>(UserController(), permanent: true);

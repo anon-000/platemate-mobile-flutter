@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:platemate_user/app_configs/app_assets.dart';
 import 'package:platemate_user/app_configs/environment.dart';
 import 'package:platemate_user/global_controllers/user_controller.dart';
+import 'package:platemate_user/pages/authenticaton/login/login_page.dart';
 import 'package:platemate_user/pages/profile/widgets/profile_card.dart';
 import 'package:platemate_user/pages/profile/widgets/profile_tile.dart';
 import 'package:platemate_user/pages/web_view/web_view_page.dart';
@@ -176,6 +177,7 @@ class ProfilePage extends StatelessWidget {
                                         Get.back();
                                         userController.updateUser(null);
                                         SharedPreferenceHelper.logout();
+                                        Get.offAllNamed(LoginPage.routeName);
                                       });
                                 },
                               ),

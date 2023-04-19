@@ -40,6 +40,11 @@ class PreferencesFirstController extends GetxController {
       SnackBarHelper.show("Please select any of them to proceed");
       return;
     }
-    Get.toNamed(PreferencesSecondPage.routeName);
+    Get.toNamed(
+      PreferencesSecondPage.routeName,
+      arguments: {
+        "dietContext": (selectedIndex ?? 0) + 1,
+      },
+    );
   }
 }

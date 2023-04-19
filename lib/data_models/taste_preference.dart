@@ -42,8 +42,10 @@ class TastePreference {
         status: json["status"],
         cuisinePreferences: json["cuisinePreferences"] == null
             ? []
-            : List<CuisinePreference>.from(json["cuisinePreferences"]
-                .map((x) => CuisinePreference.fromJson(x))),
+            : List<CuisinePreference>.from(json["cuisinePreferences"].map((x) =>
+                x is String
+                    ? CuisinePreference.fromJson({"_id": x})
+                    : CuisinePreference.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -54,8 +56,8 @@ class TastePreference {
         "spicyLevel": spicyLevel,
         "createdBy": createdBy,
         "status": status,
-        "cuisinePreferences": List<dynamic>.from(
-            (cuisinePreferences ?? []).map((x) => x.toJson())),
+        "cuisinePreferences": List<dynamic>.from((cuisinePreferences ?? [])
+            .map((x) => x is String ? {"_id": x} : x.toJson())),
       };
 }
 

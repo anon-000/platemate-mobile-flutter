@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:platemate_user/app_configs/app_colors.dart';
+import 'package:platemate_user/global_controllers/user_controller.dart';
 import 'package:platemate_user/pages/authenticaton/controllers/preferences_first_controller.dart';
+import 'package:platemate_user/pages/authenticaton/login/login_page.dart';
+import 'package:platemate_user/utils/dialog_helper.dart';
+import 'package:platemate_user/utils/shared_preference_helper.dart';
 
 import '../../../app_configs/app_assets.dart';
 import '../../../widgets/app_buttons/app_primary_button.dart';
@@ -45,6 +49,24 @@ class _PreferencesFirstPageState extends State<PreferencesFirstPage> {
           onPressed: () => Get.back(),
           icon: SvgPicture.asset(AppAssets.back_button),
         ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              showMyDialog(
+                title: 'Are you sure you want to logout?',
+                positiveCallback: () {
+                  Get.back();
+                  final userController = Get.find<UserController>();
+                  userController.updateUser(null);
+                  SharedPreferenceHelper.logout();
+                  Get.offAllNamed(LoginPage.routeName);
+                },
+              );
+            },
+            child: Text("Logout"),
+          ),
+          const SizedBox(width: 16),
+        ],
       ),
       body: SafeArea(
         child: Column(

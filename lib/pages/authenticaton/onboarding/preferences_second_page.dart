@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:platemate_user/global_controllers/user_controller.dart';
+import 'package:platemate_user/pages/authenticaton/controllers/cuisines_controller.dart';
 import 'package:platemate_user/pages/authenticaton/controllers/preferences_second_controller.dart';
+import 'package:platemate_user/pages/authenticaton/login/login_page.dart';
+import 'package:platemate_user/utils/dialog_helper.dart';
+import 'package:platemate_user/utils/shared_preference_helper.dart';
 
 import '../../../app_configs/app_assets.dart';
 import '../../../app_configs/app_colors.dart';
@@ -24,6 +29,7 @@ class PreferencesSecondPage extends StatefulWidget {
 
 class _PreferencesSecondPageState extends State<PreferencesSecondPage> {
   late PreferencesSecondController _controller;
+  late CuisinesController _cuisinesController;
 
   @override
   void dispose() {
@@ -36,6 +42,8 @@ class _PreferencesSecondPageState extends State<PreferencesSecondPage> {
     super.initState();
     _controller = PreferencesSecondController();
     _controller.onInit();
+    _cuisinesController = CuisinesController();
+    _cuisinesController.getData();
   }
 
   @override
@@ -46,6 +54,24 @@ class _PreferencesSecondPageState extends State<PreferencesSecondPage> {
           onPressed: () => Get.back(),
           icon: SvgPicture.asset(AppAssets.back_button),
         ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              showMyDialog(
+                title: 'Are you sure you want to logout?',
+                positiveCallback: () {
+                  Get.back();
+                  final userController = Get.find<UserController>();
+                  userController.updateUser(null);
+                  SharedPreferenceHelper.logout();
+                  Get.offAllNamed(LoginPage.routeName);
+                },
+              );
+            },
+            child: Text("Logout"),
+          ),
+          const SizedBox(width: 16),
+        ],
       ),
       body: SafeArea(
         child: Column(
@@ -59,41 +85,48 @@ class _PreferencesSecondPageState extends State<PreferencesSecondPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   children: [
                     LargeTitle("What do you like?"),
-                    Wrap(
-                      spacing: 12.0,
-                      runSpacing: 2.0,
-                      children: <Widget>[
-                        ..._controller.preferenceList.map(
-                          (e) => FilterChip(
-                            label: Text(
-                              '${e}',
-                              style: TextStyle(
-                                color: _controller.selectedFoodTypes.contains(e)
-                                    ? Colors.white
-                                    : null,
-                              ),
-                            ),
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                side: BorderSide(
-                                  width: 1.0,
-                                  color:
-                                      _controller.selectedFoodTypes.contains(e)
+                    _cuisinesController.obx((state) {
+                      if (state != null) {
+                        return Wrap(
+                          spacing: 12.0,
+                          runSpacing: 2.0,
+                          children: <Widget>[
+                            ...state.map(
+                              (e) => FilterChip(
+                                label: Text(
+                                  '${e.name}',
+                                  style: TextStyle(
+                                    color: _controller.selectedFoodTypes
+                                            .contains(e.id)
+                                        ? Colors.white
+                                        : null,
+                                  ),
+                                ),
+                                backgroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8)),
+                                    side: BorderSide(
+                                      width: 1.0,
+                                      color: _controller.selectedFoodTypes
+                                              .contains(e.id)
                                           ? AppColors.brightPrimary
                                           : AppColors.grey80,
-                                )),
-                            onSelected: (bool val) {
-                              _controller.selectFoodTypes(e);
-                            },
-                            selected: _controller.selectedFoodTypes.contains(e),
-                            showCheckmark: false,
-                            selectedColor: AppColors.brightPrimary,
-                          ),
-                        ),
-                      ],
-                    ),
+                                    )),
+                                onSelected: (bool val) {
+                                  _controller.selectFoodTypes(e.id);
+                                },
+                                selected: _controller.selectedFoodTypes
+                                    .contains(e.id),
+                                showCheckmark: false,
+                                selectedColor: AppColors.brightPrimary,
+                              ),
+                            ),
+                          ],
+                        );
+                      }
+                      return SizedBox();
+                    }),
                     const SizedBox(height: 32),
                     MediumTitle("Do you have a sweet tooth?"),
                     InkWell(
@@ -254,7 +287,8 @@ class _PreferencesSecondPageState extends State<PreferencesSecondPage> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: AppPrimaryButton(
-                  child: Text("Next".toUpperCase()),
+                  key: _controller.buttonKey,
+                  child: Text("Submit".toUpperCase()),
                   onPressed: _controller.proceed,
                 ),
               ),
