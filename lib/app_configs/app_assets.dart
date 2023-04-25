@@ -62,6 +62,7 @@ mixin AppAssets {
   static const String flashVector = 'assets/icons/flash_light.svg';
   static const String flashFilledVector = 'assets/icons/flash_light_filled.svg';
   static const String upload = 'assets/icons/upload_vector.svg';
+  static const String share = 'assets/icons/share.svg';
 
   ///
   static const String demoProfile =
