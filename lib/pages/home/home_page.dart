@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:platemate_user/app_configs/app_assets.dart';
 import 'package:platemate_user/pages/home/widgets/categories_slider.dart';
 import 'package:platemate_user/pages/home/widgets/location_picker.dart';
 import 'package:platemate_user/pages/home/widgets/recommended_restaurants_slider.dart';
-
+import 'package:platemate_user/pages/qr_scanner/qr_scanner_page.dart';
 import '../../app_configs/app_colors.dart';
 
 ///
@@ -29,7 +30,9 @@ class _HomePageState extends State<HomePage> {
           title: LocationPicker(),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(QRSScannerPage.routeName);
+              },
               icon: SvgPicture.asset(AppAssets.qr_scanner),
             ),
             const SizedBox(width: 6),

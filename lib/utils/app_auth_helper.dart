@@ -339,6 +339,7 @@ class AuthHelper {
         "deviceType": deviceInfo['deviceType'],
       },
     );
+    log("$result");
     final String accessToken = result.data['accessToken'];
     final user = UserResponse.fromJson(result.data);
     SharedPreferenceHelper.storeUser(user: user);

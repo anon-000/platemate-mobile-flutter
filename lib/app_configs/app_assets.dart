@@ -59,6 +59,9 @@ mixin AppAssets {
   static const String taste = 'assets/icons/taste.svg';
   static const String terms = 'assets/icons/terms.svg';
   static const String log_out = 'assets/icons/log_out.svg';
+  static const String flashVector = 'assets/icons/flash_light.svg';
+  static const String flashFilledVector = 'assets/icons/flash_light_filled.svg';
+  static const String upload = 'assets/icons/upload_vector.svg';
 
   ///
   static const String demoProfile =
