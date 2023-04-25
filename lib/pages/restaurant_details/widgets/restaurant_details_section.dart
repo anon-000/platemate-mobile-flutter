@@ -20,35 +20,44 @@ class RestaurantDetailsSection extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.location_on),
+              Icon(Icons.location_on_rounded),
+              const SizedBox(width: 4),
               Text(
-                '18kms away',
+                '18 kms away ',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              Text("Open now"),
+              Text("  |  Open now"),
               Spacer(),
-              SvgPicture.asset(AppAssets.share),
+              InkWell(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SvgPicture.asset(AppAssets.share),
+                ),
+                onTap: () {},
+              ),
             ],
           ),
+          const SizedBox(height: 10),
           Text(
-            "99 Street, Chandrashekharpur, Near Hanuman temple, Bhubaneswar, 751012",
+            "Plot no 99, Chandrashekharpur, Near Hanuman temple, Bhubaneswar, 751012",
             style: TextStyle(
               color: AppColors.grey40,
               fontSize: 16,
             ),
           ),
+          const SizedBox(height: 10),
           MyDivider(),
+          const SizedBox(height: 12),
           Row(
             children: [
-              Icon(
-                Icons.star,
-                color: AppColors.rating_yellow,
-                size: 24,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 5),
+                child: SvgPicture.asset(AppAssets.star),
               ),
-              const SizedBox(width: 4),
+              const SizedBox(width: 10),
               Text(
                 "3.8",
                 style: TextStyle(
@@ -57,9 +66,9 @@ class RestaurantDetailsSection extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(width: 4),
+              const SizedBox(width: 10),
               Text(
-                "(999k ratings)",
+                "( 999k ratings )",
                 style: TextStyle(
                   color: AppColors.grey40,
                   fontSize: 16,
@@ -67,6 +76,7 @@ class RestaurantDetailsSection extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 8),
           Row(
             children: [
               Text(
@@ -83,7 +93,7 @@ class RestaurantDetailsSection extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
-              const SizedBox(width: 4),
+              const SizedBox(width: 6),
               Container(
                 height: 4,
                 width: 4,
@@ -92,7 +102,7 @@ class RestaurantDetailsSection extends StatelessWidget {
                   color: AppColors.grey40,
                 ),
               ),
-              const SizedBox(width: 4),
+              const SizedBox(width: 6),
               Text(
                 "45% off",
                 style: TextStyle(
@@ -103,6 +113,7 @@ class RestaurantDetailsSection extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 8),
         ],
       ),
     );

@@ -14,11 +14,13 @@ class MenuItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 134,
       padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.grey90),
         borderRadius: BorderRadius.circular(12),
       ),
+      clipBehavior: Clip.antiAlias,
       child: Row(
         children: [
           Expanded(
@@ -28,8 +30,8 @@ class MenuItemCard extends StatelessWidget {
                 const SizedBox(height: 14),
                 Row(
                   children: [
-                    SvgPicture.asset(AppAssets.veg),
-                    const SizedBox(width: 9),
+                    SvgPicture.asset(AppAssets.veg, height: 14),
+                    const SizedBox(width: 6),
                     Text(
                       'North Indian, Mughlai',
                       style: TextStyle(
@@ -39,7 +41,7 @@ class MenuItemCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: 10),
                 Text(
                   "Chicken Biriyani",
                   style: TextStyle(
@@ -47,13 +49,15 @@ class MenuItemCard extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 Text(
                   'Lorem ipsum dolor sit amet, consec tetur adip more...',
                   style: TextStyle(
                     fontSize: 12,
                     color: AppColors.grey40,
                   ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Spacer(),
                 Text(
@@ -63,13 +67,15 @@ class MenuItemCard extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: 12),
               ],
             ),
           ),
+          const SizedBox(width: 16),
           MyImage(
-            "https://img.onmanorama.com/content/dam/mm/en/food/in-season/Ramzan/Images/hyderabadi-dum-biryani.jpg",
-            width: 134,
+            "https://assets.cntraveller.in/photos/6218cfdf6774879c067d3ece/1:1/w_1079,h_1079,c_limit/best%20biryani%20in%20pune%20lead.jpg",
+            width: 130,
+            height: double.infinity,
             fit: BoxFit.cover,
           ),
         ],

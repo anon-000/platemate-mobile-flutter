@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// Created by Sunil Kumar from Boiler plate
 ///
 mixin AppColors {
-  static const brightBackground = Color(0xffFFFFFF);
+  static const brightBackground = Color(0xffF5F5F5);
   static const darkBackground = Color(0xff3e3e3e);
   static const borderColor = Color(0xc8bababa);
   static const brightSecondaryColor = Color(0xff3E9AFF);

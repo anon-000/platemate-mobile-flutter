@@ -11,7 +11,7 @@ class MyDivider extends StatelessWidget {
     return Divider(
       height: 0,
       thickness: 1,
-      color: AppColors.dividerSlot.withOpacity(0.1),
+      color: AppColors.grey90,
     );
   }
 }
