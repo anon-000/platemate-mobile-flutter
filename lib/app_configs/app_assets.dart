@@ -65,6 +65,8 @@ mixin AppAssets {
   static const String share = 'assets/icons/share.svg';
   static const String star = 'assets/icons/star.svg';
   static const String arrow = 'assets/icons/arrow.svg';
+  static const String add = 'assets/icons/add.svg';
+  static const String subtract = 'assets/icons/subtract.svg';
 
   ///
   static const String demoProfile =

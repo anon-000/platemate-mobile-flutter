@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:platemate_user/app_configs/app_assets.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -33,6 +34,18 @@ class AppBackButton extends StatelessWidget {
                   color: color ?? Theme.of(context).iconTheme.color)),
         ),
       ),
+    );
+  }
+}
+
+class RoundedBackButton extends StatelessWidget {
+  const RoundedBackButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () => Get.back(),
+      icon: SvgPicture.asset(AppAssets.back_button),
     );
   }
 }

@@ -3,10 +3,12 @@ import 'package:platemate_user/pages/authenticaton/login/login_page.dart';
 import 'package:platemate_user/pages/authenticaton/onboarding/preferences_first_page.dart';
 import 'package:platemate_user/pages/authenticaton/onboarding/preferences_second_page.dart';
 import 'package:platemate_user/pages/authenticaton/signup/signup_page.dart';
+import 'package:platemate_user/pages/checkout/checkout_page.dart';
 import 'package:platemate_user/pages/dashboard/dashboard_page.dart';
 import 'package:platemate_user/pages/demo/create_footprint_page.dart';
 import 'package:platemate_user/pages/qr_scanner/qr_scanner_page.dart';
 import 'package:platemate_user/pages/restaurant_details/restaurant_details_page.dart';
+import 'package:platemate_user/pages/restaurant_menu/restaurant_menu_page.dart';
 import 'package:platemate_user/pages/splash/splash_screen.dart';
 import 'package:platemate_user/pages/web_view/web_view_page.dart';
 import 'package:get/get.dart';
@@ -50,6 +52,14 @@ class AppPages {
     GetPage(
       name: QRSScannerPage.routeName,
       page: () => QRSScannerPage(),
+    ),
+    GetPage(
+      name: CheckOutPage.routeName,
+      page: () => CheckOutPage(),
+    ),
+    GetPage(
+      name: RestaurantMenuPage.routeName,
+      page: () => RestaurantMenuPage(),
     ),
   ];
 }

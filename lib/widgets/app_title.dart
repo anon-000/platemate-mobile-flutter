@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:platemate_user/app_configs/app_colors.dart';
 
 ///
 /// Created by Auro on 22/01/22 at 7:00 pm
@@ -31,6 +32,24 @@ class SheetTitle extends StatelessWidget {
             },
           )
         ],
+      ),
+    );
+  }
+}
+
+class MediumTitleText extends StatelessWidget {
+  final String title;
+
+  const MediumTitleText(this.title);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      '$title',
+      style: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: AppColors.grey60,
       ),
     );
   }

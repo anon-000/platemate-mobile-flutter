@@ -7,7 +7,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:platemate_user/app_configs/app_assets.dart';
 import 'package:scan/scan.dart';
 import '../../app_configs/app_colors.dart';
-import '../../widgets/app_buttons/app_back_button.dart';
 import '../../widgets/app_buttons/app_outline_button.dart';
 import '../../widgets/photo_chooser.dart';
 
