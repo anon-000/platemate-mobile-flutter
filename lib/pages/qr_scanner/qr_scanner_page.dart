@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:platemate_user/app_configs/app_assets.dart';
+import 'package:platemate_user/pages/restaurant_menu/restaurant_menu_page.dart';
 import 'package:scan/scan.dart';
 import '../../app_configs/app_colors.dart';
 import '../../widgets/app_buttons/app_outline_button.dart';
@@ -110,7 +111,9 @@ class _QRSScannerPageState extends State<QRSScannerPage> {
                             controller: controller,
                             scanAreaScale: 1,
                             scanLineColor: Colors.transparent,
-                            onCapture: (data) {
+                            onCapture: (data) async {
+                              controller.pause();
+                              await Get.toNamed(RestaurantMenuPage.routeName);
                               // var id = data.split(',')[0];
                               // if (id == SharedPreferenceHelper.user!.user!.id ||
                               //     data.split(',').length != 2) {

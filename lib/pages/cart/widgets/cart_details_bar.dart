@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:platemate_user/app_configs/app_colors.dart';
+import 'package:platemate_user/pages/checkout/checkout_page.dart';
 import 'package:platemate_user/widgets/app_buttons/app_primary_button.dart';
 
 ///
@@ -14,6 +16,7 @@ class CartDetailsBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
+        color: Colors.white,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -48,8 +51,11 @@ class CartDetailsBar extends StatelessWidget {
           ),
           const SizedBox(width: 16),
           AppPrimaryButton(
+            color: AppColors.green_2_0,
             child: Text("Order items"),
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(CheckOutPage.routeName);
+            },
           )
         ],
       ),

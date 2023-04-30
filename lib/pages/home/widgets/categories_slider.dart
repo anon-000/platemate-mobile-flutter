@@ -1,28 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:platemate_user/app_configs/app_assets.dart';
+import 'package:get/get.dart';
 import 'package:platemate_user/app_configs/app_colors.dart';
+import 'package:platemate_user/pages/home/controllers/category_controller.dart';
 import 'package:platemate_user/widgets/user_circle_avatar.dart';
 
 ///
 /// Created by Auro on 04/03/23 at 10:14 AM
 ///
 
-class CategoriesSlider extends StatelessWidget {
+class CategoriesSlider extends GetView<CategoryController> {
   const CategoriesSlider({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<String> preferenceList = [
-      'Punjabi',
-      'Rajasthani',
-      'North Indian',
-      'Mughlai',
-      'Kashmiri',
-      'Indo-Chinese',
-      'Turkish',
-      'Japanese',
-      'Italian',
-    ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -32,24 +22,33 @@ class CategoriesSlider extends StatelessWidget {
         ),
         SizedBox(
           height: 112,
-          child: ListView.separated(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            itemCount: preferenceList.length,
-            scrollDirection: Axis.horizontal,
-            separatorBuilder: (c, i) => SizedBox(width: 16),
-            itemBuilder: (c, i) => Column(
-              children: [
-                UserCircleAvatar(AppAssets.demoIconImageCake),
-                const SizedBox(height: 6),
-                Text(
-                  "${preferenceList[i]}",
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: AppColors.grey20,
+          child: controller.obx(
+            (state) {
+              if (state != null) {
+                return ListView.separated(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: state.length,
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (c, i) => SizedBox(width: 16),
+                  itemBuilder: (c, i) => Column(
+                    children: [
+                      UserCircleAvatar("${state[i].avatar}"),
+                      const SizedBox(height: 6),
+                      Text(
+                        "${state[i].name}",
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: AppColors.grey20,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
+                );
+              }
+              return SizedBox();
+            },
+            onError: (e) => SizedBox(),
+            onEmpty: SizedBox(),
           ),
         ),
       ],

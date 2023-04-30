@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:platemate_user/data_models/restaurant.dart';
 import 'package:platemate_user/pages/cart/widgets/cart_details_bar.dart';
 import 'package:platemate_user/pages/checkout/widgets/checkout_items.dart';
 import 'package:platemate_user/pages/checkout/widgets/checkout_restaurant_details.dart';
@@ -38,6 +39,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Checkout"),
+        backgroundColor: Colors.white,
         centerTitle: true,
         leading: IconButton(
           onPressed: () => Get.back(),
@@ -49,9 +51,11 @@ class _CheckOutPageState extends State<CheckOutPage> {
           Expanded(
             child: ListView(
               children: [
-                CheckOutRestaurantDetails(),
+                CheckOutRestaurantDetails(Restaurant.fromJson({})),
                 CheckOutItemsSection(),
                 Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
@@ -65,6 +69,8 @@ class _CheckOutPageState extends State<CheckOutPage> {
                   ),
                 ),
                 Container(
+                  margin: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
@@ -73,6 +79,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       MediumTitleText("Notes for the order"),
+                      const SizedBox(height: 12),
                       TextFormField(
                         minLines: 6,
                         maxLines: 9,
@@ -90,7 +97,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                       )
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),

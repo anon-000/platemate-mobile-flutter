@@ -2,17 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:platemate_user/app_configs/app_assets.dart';
 import 'package:platemate_user/app_configs/app_colors.dart';
+import 'package:platemate_user/data_models/restaurant.dart';
 import 'package:platemate_user/widgets/my_image.dart';
+import 'package:platemate_user/utils/my_extensions.dart';
 
 ///
 /// Created by Auro on 04/03/23 at 10:51 AM
 ///
 
 class FoodTile extends StatelessWidget {
-  const FoodTile({Key? key}) : super(key: key);
+  final MenuItem datum;
+
+  const FoodTile(this.datum, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final minPriceVariants = datum.variants.sortedBy((e) => e.price);
+
     return Container(
       width: 240,
       clipBehavior: Clip.antiAlias,
@@ -35,14 +41,14 @@ class FoodTile extends StatelessWidget {
                   SvgPicture.asset(AppAssets.veg),
                   const SizedBox(height: 6),
                   Text(
-                    "Chicken Biriryani",
+                    "${datum.name}",
                     style: TextStyle(
                       color: AppColors.grey20,
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    "Rs. 160",
+                    "Rs. ${minPriceVariants.first.price}",
                     style: TextStyle(
                       color: AppColors.grey20,
                     ),
@@ -52,7 +58,7 @@ class FoodTile extends StatelessWidget {
             ),
           ),
           MyImage(
-            "https://img.onmanorama.com/content/dam/mm/en/food/in-season/Ramzan/Images/hyderabadi-dum-biryani.jpg",
+            "${datum.avatar}",
             width: 80,
             fit: BoxFit.cover,
             height: double.infinity,

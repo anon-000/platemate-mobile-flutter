@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:platemate_user/app_configs/app_colors.dart';
+import 'package:platemate_user/data_models/restaurant.dart';
 import 'package:platemate_user/pages/home/widgets/food_tile.dart';
 import 'package:platemate_user/pages/restaurant_details/restaurant_details_page.dart';
 import 'package:platemate_user/widgets/user_circle_avatar.dart';
@@ -10,12 +11,16 @@ import 'package:platemate_user/widgets/user_circle_avatar.dart';
 ///
 
 class RestaurantCard extends StatelessWidget {
-  const RestaurantCard({Key? key}) : super(key: key);
+  final bool mini;
+  final Restaurant datum;
+
+  const RestaurantCard(this.datum, {Key? key, this.mini = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Get.toNamed(RestaurantDetailsPage.routeName);
       },
       child: Container(
@@ -28,15 +33,14 @@ class RestaurantCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                UserCircleAvatar(
-                    "https://img4.nbstatic.in/tr:w-500/5e7df741d60180000c4fdf0b.jpg"),
+                UserCircleAvatar("${datum.avatar}"),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Bonfire Food Court",
+                        "${datum.name}",
                         style: TextStyle(
                           color: AppColors.grey20,
                           fontSize: 16,
@@ -86,7 +90,7 @@ class RestaurantCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            "45% off",
+                            "${datum.discountPercentage}% off",
                             style: TextStyle(
                               color: AppColors.orange,
                               fontSize: 12,
@@ -104,16 +108,19 @@ class RestaurantCard extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
-            SizedBox(
-              height: 100,
-              child: ListView.separated(
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (c, i) => SizedBox(width: 16),
-                itemBuilder: (c, i) => FoodTile(),
+            if (!mini && datum.menuItems.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              SizedBox(
+                height: 100,
+                child: ListView.separated(
+                  physics: BouncingScrollPhysics(),
+                  itemCount: datum.menuItems.length,
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (c, i) => SizedBox(width: 16),
+                  itemBuilder: (c, i) => FoodTile(datum.menuItems[i]),
+                ),
               ),
-            )
+            ]
           ],
         ),
       ),

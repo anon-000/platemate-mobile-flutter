@@ -21,6 +21,8 @@ class MenuRestaurantDetails extends StatelessWidget {
             child: MyImage(
               "https://img4.nbstatic.in/tr:w-500/5e7df741d60180000c4fdf0b.jpg",
               fit: BoxFit.cover,
+              width: 80,
+              height: 80,
             ),
           ),
           const SizedBox(width: 16),
@@ -41,7 +43,7 @@ class MenuRestaurantDetails extends StatelessWidget {
                   "North Indian, Chinese",
                   style: TextStyle(
                     color: AppColors.grey40,
-                    fontSize: 12,
+                    fontSize: 13,
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -57,7 +59,7 @@ class MenuRestaurantDetails extends StatelessWidget {
                       "3.8",
                       style: TextStyle(
                         color: AppColors.rating_yellow,
-                        fontSize: 12,
+                        fontSize: 13,
                       ),
                     ),
                     const SizedBox(width: 4),
@@ -65,7 +67,7 @@ class MenuRestaurantDetails extends StatelessWidget {
                       "(999k ratings)",
                       style: TextStyle(
                         color: AppColors.grey40,
-                        fontSize: 12,
+                        fontSize: 13,
                       ),
                     ),
                     const SizedBox(width: 4),
@@ -82,7 +84,7 @@ class MenuRestaurantDetails extends StatelessWidget {
                       "45% off",
                       style: TextStyle(
                         color: AppColors.orange,
-                        fontSize: 12,
+                        fontSize: 13,
                       ),
                     ),
                   ],

@@ -18,6 +18,7 @@ class CartItemTile extends StatelessWidget {
       children: [
         Expanded(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
@@ -48,9 +49,11 @@ class CartItemTile extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SvgPicture.asset(AppAssets.arrow),
+                  const SizedBox(width: 8),
+                  SvgPicture.asset(AppAssets.arrow, height: 6),
                 ],
               ),
+              const SizedBox(height: 8),
               Text(
                 'Rs. 160',
                 style: TextStyle(

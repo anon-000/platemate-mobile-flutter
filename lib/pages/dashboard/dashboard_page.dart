@@ -2,6 +2,8 @@ import 'package:platemate_user/pages/dashboard/controllers/dashboard_controller.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:platemate_user/pages/dashboard/widgets/navigation_bar.dart';
+import 'package:platemate_user/pages/home/controllers/category_controller.dart';
+import 'package:platemate_user/pages/home/controllers/recommended_restaurants_controller.dart';
 import 'package:platemate_user/pages/home/home_page.dart';
 import 'package:platemate_user/pages/orders/orders_page.dart';
 import 'package:platemate_user/pages/profile/profile_page.dart';
@@ -21,9 +23,22 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  late CategoryController categoryController;
+  late RecommendedRestaurantsController recommendedRestaurantsController;
+
   @override
   void initState() {
     super.initState();
+    categoryController = Get.isRegistered<CategoryController>()
+        ? Get.find<CategoryController>()
+        : Get.put(CategoryController());
+    if (categoryController.state == null) categoryController.getData();
+
+    recommendedRestaurantsController =
+        Get.isRegistered<RecommendedRestaurantsController>()
+            ? Get.find<RecommendedRestaurantsController>()
+            : Get.put(RecommendedRestaurantsController());
+    recommendedRestaurantsController.getData();
   }
 
   @override

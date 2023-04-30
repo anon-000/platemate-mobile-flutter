@@ -8,10 +8,14 @@ import 'package:platemate_user/widgets/my_divider.dart';
 ///
 
 class CustomisationInputBox extends StatelessWidget {
-  const CustomisationInputBox({Key? key}) : super(key: key);
+  final String? selectedValue;
+
+  const CustomisationInputBox({Key? key, this.selectedValue}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const demoData = ["Gravy", "Semi Gravy", "Full Gravy"];
+
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.grey90),
@@ -21,12 +25,17 @@ class CustomisationInputBox extends StatelessWidget {
         children: [
           MediumTitleText("Quantity"),
           ListView.separated(
-            itemCount: 2,
+            itemCount: demoData.length,
             separatorBuilder: (c, i) => MyDivider(),
             itemBuilder: (c, i) => Row(
               children: [
                 Expanded(
-                  child: Text('Semi gravy'),
+                  child: Text('${demoData[i]}'),
+                ),
+                Radio(
+                  value: demoData[i],
+                  groupValue: selectedValue,
+                  onChanged: (c) {},
                 ),
               ],
             ),

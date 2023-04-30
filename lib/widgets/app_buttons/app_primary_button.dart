@@ -89,6 +89,7 @@ class AppPrimaryButtonState extends State<AppPrimaryButton> {
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 48),
                 elevation: 0,
                 foregroundColor: Colors.white,
+                backgroundColor: widget.color,
                 textStyle: TextStyle(
                   fontSize: 16,
                   fontFamily: Environment.fontFamily,

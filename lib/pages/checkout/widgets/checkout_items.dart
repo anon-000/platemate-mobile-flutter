@@ -13,18 +13,25 @@ class CheckOutItemsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MediumTitleText("Cart items"),
+          const SizedBox(height: 16),
           ListView.separated(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (c, i) => CartItemTile(),
-            separatorBuilder: (c, i) => MyDivider(),
+            separatorBuilder: (c, i) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: MyDivider(),
+            ),
             itemCount: 3,
           ),
         ],

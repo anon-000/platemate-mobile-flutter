@@ -5,12 +5,11 @@ import 'package:platemate_user/pages/home/widgets/categories_slider.dart';
 import 'package:platemate_user/pages/home/widgets/restaurant_card.dart';
 
 ///
-/// Created by Auro on 04/03/23 at 10:36 AM
+/// Created by Auro on 29/04/23 at 7:14 PM
 ///
 
-class RecommendedRestaurantsSlider
-    extends GetView<RecommendedRestaurantsController> {
-  const RecommendedRestaurantsSlider({Key? key}) : super(key: key);
+class NearByRestaurants extends GetView<RecommendedRestaurantsController> {
+  const NearByRestaurants({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class RecommendedRestaurantsSlider
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SectionTitle("Recommended for you"),
+          SectionTitle("Nearby Restaurants"),
           const SizedBox(height: 8),
           controller.obx(
             (state) {
@@ -29,7 +28,10 @@ class RecommendedRestaurantsSlider
                   shrinkWrap: true,
                   itemCount: state.length,
                   separatorBuilder: (i, c) => SizedBox(height: 16),
-                  itemBuilder: (c, i) => RestaurantCard(state[i]),
+                  itemBuilder: (c, i) => RestaurantCard(
+                    state[i],
+                    mini: true,
+                  ),
                 );
               }
               return SizedBox();

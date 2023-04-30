@@ -31,35 +31,29 @@ class AppPriceWidget extends StatelessWidget {
         const SizedBox(height: 16),
         Row(
           children: [
-            const SizedBox(width: 16),
             Text('Subtotal'),
             Spacer(),
             Text('₹${totalPrice.toStringAsFixed(2)}'),
-            const SizedBox(width: 16),
           ],
         ),
         const SizedBox(height: 8),
         Row(
           children: [
-            const SizedBox(width: 16),
             Text('Discount (${discountPercentage.toStringAsFixed(0)}%)',
                 style: discountTextStyle),
             Spacer(),
             Text('-₹${discount.toStringAsFixed(2)}', style: discountTextStyle),
-            const SizedBox(width: 16),
           ],
         ),
         const SizedBox(height: 8),
         if (couponDiscount != null) ...[
           Row(
             children: [
-              const SizedBox(width: 16),
               Text('Coupon (${coupon?.toUpperCase() ?? ''})',
                   style: discountTextStyle),
               Spacer(),
               Text('-₹${couponDiscount!.toStringAsFixed(2)}',
                   style: discountTextStyle),
-              const SizedBox(width: 16),
             ],
           ),
           const SizedBox(height: 8)
@@ -67,28 +61,23 @@ class AppPriceWidget extends StatelessWidget {
         if (deliveryCharges != null)
           Row(
             children: [
-              const SizedBox(width: 16),
               Text('Travel charge'),
               Spacer(),
               Text(
                   '${deliveryCharges != null && deliveryCharges != 0 ? deliveryCharges : 'Free'}'),
-              const SizedBox(width: 16),
             ],
           ),
         if (taxPercentage != null)
           Row(
             children: [
-              const SizedBox(width: 16),
               Text('Tax ($taxPercentage %)'),
               Spacer(),
               Text('₹$taxAmount'),
-              const SizedBox(width: 16),
             ],
           ),
         Divider(),
         Row(
           children: [
-            const SizedBox(width: 16),
             Expanded(
               child: Text(
                 'Net total',
@@ -99,10 +88,8 @@ class AppPriceWidget extends StatelessWidget {
               '₹${netTotal.toStringAsFixed(2)}',
               style: netTotalTextStyle,
             ),
-            const SizedBox(width: 16),
           ],
         ),
-        const SizedBox(height: 16),
       ],
     );
   }

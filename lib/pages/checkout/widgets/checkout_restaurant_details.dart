@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:platemate_user/app_configs/app_colors.dart';
+import 'package:platemate_user/data_models/restaurant.dart';
 import 'package:platemate_user/widgets/my_image.dart';
 import '../../../app_configs/app_assets.dart';
 
@@ -9,7 +10,9 @@ import '../../../app_configs/app_assets.dart';
 ///
 
 class CheckOutRestaurantDetails extends StatelessWidget {
-  const CheckOutRestaurantDetails({Key? key}) : super(key: key);
+  final Restaurant datum;
+
+  const CheckOutRestaurantDetails(this.datum, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +21,14 @@ class CheckOutRestaurantDetails extends StatelessWidget {
       color: Colors.white,
       child: Row(
         children: [
-          MyImage(
-            "https://d4t7t8y8xqo0t.cloudfront.net/resized/750X436/eazytrendz%2F2953%2Ftrend20201009113426.jpg",
-            fit: BoxFit.cover,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: MyImage(
+              "${datum.avatar}",
+              fit: BoxFit.cover,
+              width: 60,
+              height: 60,
+            ),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -35,7 +43,7 @@ class CheckOutRestaurantDetails extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  "Bonfire Food Court",
+                  "${datum.name}",
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -47,7 +55,7 @@ class CheckOutRestaurantDetails extends StatelessWidget {
           RotatedBox(
             quarterTurns: 1,
             child: SvgPicture.asset(AppAssets.arrow),
-          )
+          ),
         ],
       ),
     );

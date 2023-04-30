@@ -32,8 +32,12 @@ mixin ApiRoutes {
   static const String chats = "$v1/chat/chat-message";
   static const String like = "$v1/likes";
   static const String comments = "$v1/comment";
-  static const String booking_distribution = "$v1/dashboard/admin/booking-distribution";
+  static const String booking_distribution =
+      "$v1/dashboard/admin/booking-distribution";
   static const String statistics = "$v1/dashboard/admin/booking";
   static const String cuisines = "$v1/cuisines";
   static const String tastePreferences = "$v1/taste-preference";
+  static const String foodCategories = "$v1/food-categories";
+  static const String recommendedRestaurants = "$v1/recommended-restaurants";
+  static const String order = "$v1/order";
 }

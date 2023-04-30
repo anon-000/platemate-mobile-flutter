@@ -5,18 +5,30 @@ mixin Environment {
   static const String environment =
       String.fromEnvironment("env", defaultValue: 'dev');
 
+  static const String baseApiUrl = environment == 'prod'
+      ? 'http://192.168.29.123:3030'
+      : 'http://192.168.29.123:3030';
+
+  /// home
+  // static const String baseApiUrl = environment == 'prod'
+  //     ? 'http://192.168.153.156:3030'
+  //     : 'http://192.168.153.156:3030';
+
+  //// my hotspot collage
+  // static const String baseApiUrl = environment == 'prod'
+  //     ? 'http://192.168.136.156:3030'
+  //     : 'http://192.168.136.156:3030';
+
+
+
+  /// office wifi
   // static const String baseApiUrl = environment == 'prod'
   //     ? 'http://192.168.29.123:3030'
   //     : 'http://192.168.29.123:3030';
 
-  /// home
-  static const String baseApiUrl = environment == 'prod'
-      ? 'http://192.168.153.156:3030'
-      : 'http://192.168.153.156:3030';
-  //
   // static const String baseApiUrl = environment == 'prod'
-  //     ? 'http://192.168.29.123:3030'
-  //     : 'http://192.168.29.123:3030';
+  //     ? 'http://192.168.136.156:3030'
+  //     : 'http://192.168.136.156:3030';
 
   static const googleClientId = environment == 'prod'
       ? '1047854581243-s0re1r4vnt3lp6qubochtdgv2knv9sv5.apps.googleusercontent.com'

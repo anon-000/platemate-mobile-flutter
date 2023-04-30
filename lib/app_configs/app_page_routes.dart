@@ -6,6 +6,8 @@ import 'package:platemate_user/pages/authenticaton/signup/signup_page.dart';
 import 'package:platemate_user/pages/checkout/checkout_page.dart';
 import 'package:platemate_user/pages/dashboard/dashboard_page.dart';
 import 'package:platemate_user/pages/demo/create_footprint_page.dart';
+import 'package:platemate_user/pages/orders/order_details_page.dart';
+import 'package:platemate_user/pages/orders/orders_page.dart';
 import 'package:platemate_user/pages/qr_scanner/qr_scanner_page.dart';
 import 'package:platemate_user/pages/restaurant_details/restaurant_details_page.dart';
 import 'package:platemate_user/pages/restaurant_menu/restaurant_menu_page.dart';
@@ -60,6 +62,14 @@ class AppPages {
     GetPage(
       name: RestaurantMenuPage.routeName,
       page: () => RestaurantMenuPage(),
+    ),
+    GetPage(
+      name: OrdersPage.routeName,
+      page: () => OrdersPage(),
+    ),
+    GetPage(
+      name: OrderDetailsPage.routeName,
+      page: () => OrderDetailsPage(),
     ),
   ];
 }
