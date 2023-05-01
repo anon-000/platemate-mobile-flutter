@@ -8,6 +8,8 @@
 
 import 'dart:convert';
 
+import 'package:platemate_user/data_models/category.dart';
+
 Restaurant restaurantFromJson(String str) =>
     Restaurant.fromJson(json.decode(str));
 
@@ -21,8 +23,8 @@ class Restaurant {
   Address address;
   List<double> coordinates;
   DateTime openingTime;
-  int averagePrice;
-  int discountPercentage;
+  double averagePrice;
+  double discountPercentage;
   bool crowded;
   int status;
   DateTime createdAt;
@@ -59,8 +61,11 @@ class Restaurant {
         coordinates:
             List<double>.from(json["coordinates"].map((x) => x?.toDouble())),
         openingTime: DateTime.parse(json["openingTime"]),
-        averagePrice: json["averagePrice"],
-        discountPercentage: json["discountPercentage"],
+        averagePrice:
+            json["averagePrice"] == null ? 0 : json["averagePrice"].toDouble(),
+        discountPercentage: json["discountPercentage"] == null
+            ? 0
+            : json["discountPercentage"].toDouble(),
         crowded: json["crowded"],
         status: json["status"],
         createdAt: DateTime.parse(json["createdAt"]),
@@ -134,7 +139,7 @@ class MenuItem {
   List<Variant> variants;
   int dietContext;
   String createdBy;
-  String menuItemCategory;
+  Category? menuItemCategory;
   int status;
   DateTime createdAt;
   DateTime updatedAt;
@@ -149,7 +154,7 @@ class MenuItem {
     required this.variants,
     required this.dietContext,
     required this.createdBy,
-    required this.menuItemCategory,
+    this.menuItemCategory,
     required this.status,
     required this.createdAt,
     required this.updatedAt,
@@ -166,7 +171,13 @@ class MenuItem {
             json["variants"].map((x) => Variant.fromJson(x))),
         dietContext: json["dietContext"],
         createdBy: json["createdBy"],
-        menuItemCategory: json["menuItemCategory"],
+        menuItemCategory: json["menuItemCategory"] == null
+            ? null
+            : Category.fromJson(
+                json["menuItemCategory"] is String
+                    ? {"_id": json["menuItemCategory"]}
+                    : json["menuItemCategory"],
+              ),
         status: json["status"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
@@ -182,7 +193,8 @@ class MenuItem {
         "variants": List<dynamic>.from(variants.map((x) => x.toJson())),
         "dietContext": dietContext,
         "createdBy": createdBy,
-        "menuItemCategory": menuItemCategory,
+        "menuItemCategory":
+            menuItemCategory == null ? null : menuItemCategory!.toJson(),
         "status": status,
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
@@ -212,4 +224,28 @@ class Variant {
         "price": price,
         "_id": id,
       };
+}
+
+class MenuItemCategorySection {
+  String id;
+  String name;
+  List<MenuItem> menuItems;
+  bool visible;
+
+  MenuItemCategorySection({
+    required this.id,
+    required this.name,
+    required this.menuItems,
+    this.visible = false,
+  });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is MenuItemCategorySection &&
+          runtimeType == other.runtimeType &&
+          id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
 }

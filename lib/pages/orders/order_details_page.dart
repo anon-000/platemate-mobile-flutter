@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:platemate_user/data_models/order.dart';
-import 'package:platemate_user/pages/checkout/widgets/checkout_items.dart';
 import 'package:platemate_user/pages/checkout/widgets/checkout_restaurant_details.dart';
 import 'package:platemate_user/pages/orders/controllers/order_details_controller.dart';
+import 'package:platemate_user/pages/orders/widgets/ordered_items.dart';
 import 'package:platemate_user/widgets/app_error_widget.dart';
 import 'package:platemate_user/widgets/app_price_widget.dart';
 import 'package:platemate_user/widgets/app_title.dart';
@@ -50,6 +50,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
         if (controller.status.isSuccess && state != null) {
           double actualPriceSum = orderDetails.price.totalSellingPrice;
           double discountedPriceSum = orderDetails.price.finalPrice;
+          double discount = actualPriceSum - discountedPriceSum;
           double deliveryCharges = 0;
           //double gstPercentage = Environment.gstPercentage;
           double gstAmount = 0;
@@ -61,14 +62,20 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: Colors.white,
+                  // color: Colors.white,
                 ),
               ),
               centerTitle: true,
-              iconTheme: IconThemeData(color: Colors.white),
+              iconTheme: IconThemeData(color: Colors.black),
+              backgroundColor: Colors.white,
             ),
             body: Column(
               children: [
+                Divider(
+                  indent: 0,
+                  endIndent: 0,
+                  height: 1,
+                ),
                 Expanded(
                   child: RefreshIndicator(
                     onRefresh: () async {
@@ -78,7 +85,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       children: [
                         CheckOutRestaurantDetails(
                             orderDetails.restaurantDetails!),
-                        CheckOutItemsSection(),
+                        OrderedItems(state.orderedItems),
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 16),
                           padding: const EdgeInsets.all(16),
@@ -90,7 +97,10 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               MediumTitleText("Order Summary"),
-                              AppPriceWidget(orderDetails.price.finalPrice, 0),
+                              AppPriceWidget(
+                                actualPriceSum,
+                                discount,
+                              ),
                             ],
                           ),
                         ),

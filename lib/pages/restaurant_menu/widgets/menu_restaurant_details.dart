@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:platemate_user/app_configs/app_colors.dart';
+import 'package:platemate_user/data_models/restaurant.dart';
 import 'package:platemate_user/widgets/my_image.dart';
 
 ///
@@ -7,7 +8,9 @@ import 'package:platemate_user/widgets/my_image.dart';
 ///
 
 class MenuRestaurantDetails extends StatelessWidget {
-  const MenuRestaurantDetails({Key? key}) : super(key: key);
+  final Restaurant datum;
+
+  const MenuRestaurantDetails(this.datum, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class MenuRestaurantDetails extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: MyImage(
-              "https://img4.nbstatic.in/tr:w-500/5e7df741d60180000c4fdf0b.jpg",
+              "${datum.avatar}",
               fit: BoxFit.cover,
               width: 80,
               height: 80,
@@ -31,7 +34,7 @@ class MenuRestaurantDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Bonfire Food Court",
+                  "${datum.name}",
                   style: TextStyle(
                     color: AppColors.grey20,
                     fontSize: 16,
@@ -81,7 +84,7 @@ class MenuRestaurantDetails extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      "45% off",
+                      "${datum.discountPercentage.toStringAsFixed(1)}% off",
                       style: TextStyle(
                         color: AppColors.orange,
                         fontSize: 13,

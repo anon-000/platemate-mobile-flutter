@@ -3,8 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:platemate_user/app_configs/app_assets.dart';
 import 'package:platemate_user/app_configs/app_colors.dart';
+import 'package:platemate_user/data_models/restaurant.dart';
 import 'package:platemate_user/pages/checkout/widgets/item_quantity_button.dart';
 import 'package:platemate_user/pages/restaurant_menu/widgets/menu_item_customisation_sheet.dart';
+import 'package:platemate_user/utils/my_extensions.dart';
 import 'package:platemate_user/widgets/my_image.dart';
 
 ///
@@ -12,10 +14,14 @@ import 'package:platemate_user/widgets/my_image.dart';
 ///
 
 class MenuItemCard extends StatelessWidget {
-  const MenuItemCard({Key? key}) : super(key: key);
+  final MenuItem datum;
+
+  const MenuItemCard(this.datum, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final minPriceVariants = datum.variants.sortedBy((e) => e.price);
+
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -48,7 +54,7 @@ class MenuItemCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    "Chicken Biriyani",
+                    "${datum.name}",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -56,7 +62,7 @@ class MenuItemCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    'Lorem ipsum dolor sit amet, consec tetur adip more...',
+                    '${datum.description}',
                     style: TextStyle(
                       fontSize: 12,
                       color: AppColors.grey40,
@@ -66,7 +72,7 @@ class MenuItemCard extends StatelessWidget {
                   ),
                   Spacer(),
                   Text(
-                    "Rs. 160",
+                    "Rs. ${minPriceVariants.first.price}",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -80,7 +86,7 @@ class MenuItemCard extends StatelessWidget {
             Stack(
               children: [
                 MyImage(
-                  "https://assets.cntraveller.in/photos/6218cfdf6774879c067d3ece/1:1/w_1079,h_1079,c_limit/best%20biryani%20in%20pune%20lead.jpg",
+                  "${datum.avatar}",
                   width: 130,
                   height: double.infinity,
                   fit: BoxFit.cover,

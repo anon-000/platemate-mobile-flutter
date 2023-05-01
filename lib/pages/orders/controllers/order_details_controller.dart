@@ -29,13 +29,13 @@ class OrderDetailsController extends GetxController with StateMixin<Order> {
   getOrderDetails() async {
     try {
       change(null, status: RxStatus.loading());
-      final result = await ApiCall.get(ApiRoutes.order, id: '$orderId', query: {
-        '\$populate': ["orderedItems.menuItem", "restaurantDetails"],
-      });
-
-      if (result.data["statusCode"] != 200) {
-        throw "${result.data["message"]}";
-      }
+      final result = await ApiCall.get(
+        ApiRoutes.order,
+        id: '$orderId',
+        query: {
+          '\$populate': ["orderedItems.menuItem", "restaurantDetails"],
+        },
+      );
 
       final response = Order.fromJson(result.data);
 

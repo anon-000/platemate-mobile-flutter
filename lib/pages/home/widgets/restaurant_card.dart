@@ -21,7 +21,12 @@ class RestaurantCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(RestaurantDetailsPage.routeName);
+        Get.toNamed(
+          RestaurantDetailsPage.routeName,
+          arguments: {
+            "restaurantId": datum.id,
+          },
+        );
       },
       child: Container(
         padding: const EdgeInsets.all(16),

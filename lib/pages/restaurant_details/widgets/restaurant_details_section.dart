@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:platemate_user/app_configs/app_assets.dart';
 import 'package:platemate_user/app_configs/app_colors.dart';
+import 'package:platemate_user/data_models/restaurant.dart';
+import 'package:platemate_user/utils/common_functions.dart';
 import 'package:platemate_user/widgets/my_divider.dart';
 
 ///
@@ -9,7 +11,9 @@ import 'package:platemate_user/widgets/my_divider.dart';
 ///
 
 class RestaurantDetailsSection extends StatelessWidget {
-  const RestaurantDetailsSection({Key? key}) : super(key: key);
+  final Restaurant datum;
+
+  const RestaurantDetailsSection(this.datum, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +35,21 @@ class RestaurantDetailsSection extends StatelessWidget {
               ),
               Text("  |  Open now"),
               Spacer(),
-              InkWell(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SvgPicture.asset(AppAssets.share),
+              if (datum.coordinates.isNotEmpty)
+                InkWell(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(AppAssets.share),
+                  ),
+                  onTap: () {
+                    openMap(datum.coordinates[0], datum.coordinates[1]);
+                  },
                 ),
-                onTap: () {},
-              ),
             ],
           ),
           const SizedBox(height: 10),
           Text(
-            "Plot no 99, Chandrashekharpur, Near Hanuman temple, Bhubaneswar, 751012",
+            "${datum.address.addressLine}, ${datum.address.city}, ${datum.address.state} - ${datum.address.pinCode}",
             style: TextStyle(
               color: AppColors.grey40,
               fontSize: 16,
@@ -80,7 +87,7 @@ class RestaurantDetailsSection extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Rs. 200",
+                "Rs. ${datum.averagePrice}",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -104,7 +111,7 @@ class RestaurantDetailsSection extends StatelessWidget {
               ),
               const SizedBox(width: 6),
               Text(
-                "45% off",
+                "${datum.discountPercentage.toStringAsFixed(1)}% off",
                 style: TextStyle(
                   color: AppColors.orange,
                   fontSize: 16,

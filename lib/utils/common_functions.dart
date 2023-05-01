@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:timeago/timeago.dart' as time_ago;
+import 'package:url_launcher/url_launcher.dart';
 
 ///
 /// Created by Sunil Kumar from Boiler plate.
@@ -100,4 +101,15 @@ getMonthStringFromInt(int m) {
       break;
   }
   return month;
+}
+
+Future<void> openMap(double latitude, double longitude,
+    {LaunchMode linkLaunchMode = LaunchMode.externalApplication}) async {
+  String googleUrl =
+      'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+  if (await canLaunchUrl(Uri.parse(googleUrl))) {
+    await launchUrl(Uri.parse(googleUrl), mode: linkLaunchMode);
+  } else {
+    throw 'Could not open the map.';
+  }
 }

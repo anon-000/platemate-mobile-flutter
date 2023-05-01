@@ -5,9 +5,9 @@ mixin Environment {
   static const String environment =
       String.fromEnvironment("env", defaultValue: 'dev');
 
-  static const String baseApiUrl = environment == 'prod'
-      ? 'http://192.168.29.123:3030'
-      : 'http://192.168.29.123:3030';
+  // static const String baseApiUrl = environment == 'prod'
+  //     ? 'http://192.168.29.123:3030'
+  //     : 'http://192.168.29.123:3030';
 
   /// home
   // static const String baseApiUrl = environment == 'prod'
@@ -22,9 +22,9 @@ mixin Environment {
 
 
   /// office wifi
-  // static const String baseApiUrl = environment == 'prod'
-  //     ? 'http://192.168.29.123:3030'
-  //     : 'http://192.168.29.123:3030';
+  static const String baseApiUrl = environment == 'prod'
+      ? 'http://192.168.29.123:3030'
+      : 'http://192.168.29.123:3030';
 
   // static const String baseApiUrl = environment == 'prod'
   //     ? 'http://192.168.136.156:3030'

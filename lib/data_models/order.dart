@@ -163,6 +163,7 @@ class MenuItem {
   String description;
   int type;
   List<Variant> variants;
+  // 1 - veg, 2- non veg
   int dietContext;
   String createdBy;
   String menuItemCategory;
