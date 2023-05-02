@@ -1,4 +1,3 @@
-import 'package:platemate_user/pages/dashboard/controllers/dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:platemate_user/pages/dashboard/widgets/navigation_bar.dart';

@@ -86,7 +86,7 @@ class AppPrimaryButtonState extends State<AppPrimaryButton> {
               // ),
               style: ElevatedButton.styleFrom(
                 padding: widget.padding ??
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 48),
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 38),
                 elevation: 0,
                 foregroundColor: Colors.white,
                 backgroundColor: widget.color,

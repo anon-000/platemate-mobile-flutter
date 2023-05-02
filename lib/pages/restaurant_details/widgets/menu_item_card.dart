@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:platemate_user/app_configs/app_assets.dart';
 import 'package:platemate_user/app_configs/app_colors.dart';
 import 'package:platemate_user/data_models/restaurant.dart';
+import 'package:platemate_user/pages/cart/controllers/cart_controller.dart';
 import 'package:platemate_user/pages/checkout/widgets/item_quantity_button.dart';
 import 'package:platemate_user/pages/restaurant_menu/widgets/menu_item_customisation_sheet.dart';
 import 'package:platemate_user/utils/my_extensions.dart';
@@ -22,6 +23,7 @@ class MenuItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final minPriceVariants = datum.variants.sortedBy((e) => e.price);
 
+    final cartController = Get.find<CartController>();
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -95,21 +97,64 @@ class MenuItemCard extends StatelessWidget {
                   bottom: 10,
                   left: 10,
                   right: 10,
-                  child: ItemQuantityButton(
-                    quantity: 3,
-                    onIncrement: () {
-                      Get.bottomSheet(
-                        MenuItemCustomisationSheet(datum),
-                        backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            topRight: Radius.circular(16),
-                          ),
-                        ),
-                      );
+                  child: cartController.obx(
+                    (state) {
+                      if (state != null) {
+                        final items = state
+                            .where((element) => element.menuItem.id == datum.id)
+                            .toList();
+
+                        return items.first.quantity >= 1
+                            ? ItemQuantityButton(
+                                quantity: items.first.quantity,
+                                onIncrement: () =>
+                                    cartController.handleIncreaseCount(datum),
+                                onDecrement: () =>
+                                    cartController.handleDecreaseCount(datum),
+                              )
+                            : AddToCartButton(
+                                onTap: () async {
+                                  final result = await Get.bottomSheet(
+                                    MenuItemCustomisationSheet(datum),
+                                    backgroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(16),
+                                        topRight: Radius.circular(16),
+                                      ),
+                                    ),
+                                  );
+                                  if (result == null) return;
+                                  cartController.handleIncreaseCount(
+                                    datum,
+                                    variant: result['variant'],
+                                    customisations: result['customisations'],
+                                  );
+                                },
+                              );
+                      }
+                      return SizedBox();
                     },
-                    onDecrement: () {},
+                    onEmpty: AddToCartButton(
+                      onTap: () async {
+                        final result = await Get.bottomSheet(
+                          MenuItemCustomisationSheet(datum),
+                          backgroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(16),
+                              topRight: Radius.circular(16),
+                            ),
+                          ),
+                        );
+                        if (result == null) return;
+                        cartController.handleIncreaseCount(
+                          datum,
+                          variant: result['variant'],
+                          customisations: result['customisations'] ?? [],
+                        );
+                      },
+                    ),
                   ),
                 )
               ],

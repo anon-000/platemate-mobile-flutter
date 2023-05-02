@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:platemate_user/data_models/restaurant.dart';
-import 'package:platemate_user/pages/cart/widgets/cart_details_bar.dart';
 import 'package:platemate_user/pages/restaurant_menu/controllers/menu_customisation_controller.dart';
 import 'package:platemate_user/pages/restaurant_menu/widgets/customisation_input_box.dart';
+import 'package:platemate_user/widgets/app_buttons/app_primary_button.dart';
 
 ///
 /// Created by Auro on 26/04/23 at 9:53 PM
@@ -97,9 +97,18 @@ class _MenuItemCustomisationSheetState
               ],
             ),
           ),
-          CartDetailsBar(
-            btnName: "Add to cart",
-            onTap: () {},
+          AppPrimaryButton(
+            child: Text("Add to cart"),
+            onPressed: () {
+              Get.back(result: {
+                "variant": controller.selectedVariant == null
+                    ? widget.datum.variants.first
+                    : controller.selectedVariant,
+                "customisations": controller.state!
+                    .where((element) => element.customisation.value != null)
+                    .toList().map((e) => e.customisation).toList(),
+              });
+            },
           ),
         ],
       ),

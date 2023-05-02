@@ -60,3 +60,35 @@ class ItemQuantityButton extends StatelessWidget {
     );
   }
 }
+
+class AddToCartButton extends StatelessWidget {
+  final VoidCallback? onTap;
+
+  const AddToCartButton({Key? key, this.onTap}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(9),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(
+            color: AppColors.grey80,
+          ),
+        ),
+        child: Text(
+          "ADD",
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 16,
+            color: AppColors.green_0,
+          ),
+        ),
+      ),
+    );
+  }
+}
