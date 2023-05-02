@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platemate_user/data_models/order.dart';
 import 'package:platemate_user/pages/checkout/widgets/cart_item_tile.dart';
 import 'package:platemate_user/widgets/app_title.dart';
 import 'package:platemate_user/widgets/my_divider.dart';
@@ -8,7 +9,9 @@ import 'package:platemate_user/widgets/my_divider.dart';
 ///
 
 class CheckOutItemsSection extends StatelessWidget {
-  const CheckOutItemsSection({Key? key}) : super(key: key);
+  final List<OrderedItem> data;
+
+  const CheckOutItemsSection(this.data, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +30,12 @@ class CheckOutItemsSection extends StatelessWidget {
           ListView.separated(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemBuilder: (c, i) => CartItemTile(),
+            itemBuilder: (c, i) => CartItemTile(data[i]),
             separatorBuilder: (c, i) => Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: MyDivider(),
             ),
-            itemCount: 3,
+            itemCount: data.length,
           ),
         ],
       ),

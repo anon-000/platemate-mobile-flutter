@@ -99,8 +99,14 @@ class MenuItemCard extends StatelessWidget {
                     quantity: 3,
                     onIncrement: () {
                       Get.bottomSheet(
-                        MenuItemCustomisationSheet(),
+                        MenuItemCustomisationSheet(datum),
                         backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(16),
+                            topRight: Radius.circular(16),
+                          ),
+                        ),
                       );
                     },
                     onDecrement: () {},

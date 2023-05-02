@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:platemate_user/pages/cart/controllers/cart_controller.dart';
 import 'package:platemate_user/pages/cart/widgets/cart_details_bar.dart';
+import 'package:platemate_user/pages/checkout/checkout_page.dart';
 import 'package:platemate_user/pages/restaurant_details/controllers/restaurant_details_controller.dart';
 import 'package:platemate_user/pages/restaurant_details/widgets/menu_category_section.dart';
 import 'package:platemate_user/pages/restaurant_menu/widgets/menu_restaurant_details.dart';
@@ -29,6 +31,14 @@ class _RestaurantMenuPageState extends State<RestaurantMenuPage> {
     controller = Get.put(RestaurantDetailsController());
     controller.onInit();
     controller.getData();
+    clearCartAndProceed();
+  }
+
+  clearCartAndProceed() {
+    final cartController = Get.isRegistered<CartController>()
+        ? Get.find<CartController>()
+        : Get.put(CartController());
+    cartController.clearCartItems();
   }
 
   @override
@@ -59,6 +69,7 @@ class _RestaurantMenuPageState extends State<RestaurantMenuPage> {
                           itemBuilder: (c, i) => MenuCategorySection(
                             controller.menuCategories[i],
                             onTap: () => controller.handleExpanded(i),
+                            canModifyCount: true,
                           ),
                           separatorBuilder: (c, i) => MyDivider(),
                           itemCount: controller.menuCategories.length,
@@ -68,7 +79,17 @@ class _RestaurantMenuPageState extends State<RestaurantMenuPage> {
                     ],
                   ),
                 ),
-                CartDetailsBar(),
+                CartDetailsBar(
+                  btnName: "Proceed to checkout",
+                  onTap: () {
+                    Get.toNamed(
+                      CheckOutPage.routeName,
+                      arguments: {
+                        "restaurant": controller.state!.id,
+                      },
+                    );
+                  },
+                ),
               ],
             );
           }

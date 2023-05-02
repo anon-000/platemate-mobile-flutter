@@ -10,6 +10,7 @@ import 'package:platemate_user/pages/restaurant_details/widgets/menu_item_card.d
 ///
 
 class MenuCategorySection extends StatelessWidget {
+  final bool canModifyCount;
   final MenuItemCategorySection datum;
   final VoidCallback? onTap;
 
@@ -17,6 +18,7 @@ class MenuCategorySection extends StatelessWidget {
     this.datum, {
     Key? key,
     this.onTap,
+    this.canModifyCount = false,
   }) : super(key: key);
 
   @override

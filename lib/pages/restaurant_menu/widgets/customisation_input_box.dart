@@ -9,35 +9,50 @@ import 'package:platemate_user/widgets/my_divider.dart';
 
 class CustomisationInputBox extends StatelessWidget {
   final String? selectedValue;
+  final List<String> data;
+  final Function(String v)? onChanged;
+  final String? title;
 
-  const CustomisationInputBox({Key? key, this.selectedValue}) : super(key: key);
+  const CustomisationInputBox({
+    Key? key,
+    this.selectedValue,
+    this.data = const [],
+    this.onChanged,
+    this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const demoData = ["Gravy", "Semi Gravy", "Full Gravy"];
-
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.grey90),
         borderRadius: BorderRadius.circular(12),
       ),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MediumTitleText("Quantity"),
+          const SizedBox(height: 14),
+          MediumTitleText(title ?? ""),
           ListView.separated(
-            itemCount: demoData.length,
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: data.length,
             separatorBuilder: (c, i) => MyDivider(),
-            itemBuilder: (c, i) => Row(
-              children: [
-                Expanded(
-                  child: Text('${demoData[i]}'),
-                ),
-                Radio(
-                  value: demoData[i],
-                  groupValue: selectedValue,
-                  onChanged: (c) {},
-                ),
-              ],
+            itemBuilder: (c, i) => InkWell(
+              onTap: () => onChanged!.call(data[i]),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text('${data[i]}'),
+                  ),
+                  Radio(
+                    value: data[i],
+                    groupValue: selectedValue,
+                    onChanged: (d) => onChanged!.call(d as String),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

@@ -39,11 +39,12 @@ class _OrdersPageState extends State<OrdersPage> {
         title: Text(
           "My orders",
           style: TextStyle(
-            color: Colors.white,
-          ),
+              // color: Colors.white,
+              ),
         ),
         // elevation: 1,
-        backgroundColor: AppColors.brightPrimary,
+        // backgroundColor: AppColors.brightPrimary,
+        backgroundColor: Colors.white,
       ),
       body: controller.obx(
         (state) {

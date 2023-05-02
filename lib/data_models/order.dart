@@ -131,14 +131,16 @@ class OrderedItem {
 class Customisation {
   String title;
   int type;
-  String value;
+  String? value;
   String id;
+  List<String>? options;
 
   Customisation({
     required this.title,
     required this.type,
-    required this.value,
+    this.value,
     required this.id,
+    this.options,
   });
 
   factory Customisation.fromJson(Map<String, dynamic> json) => Customisation(
@@ -146,6 +148,9 @@ class Customisation {
         type: json["type"],
         value: json["value"],
         id: json["_id"],
+        options: json["options"] == null
+            ? []
+            : List<String>.from(json["options"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
@@ -153,98 +158,100 @@ class Customisation {
         "type": type,
         "value": value,
         "_id": id,
+        "options": options,
       };
 }
-
-class MenuItem {
-  String id;
-  String name;
-  String avatar;
-  String description;
-  int type;
-  List<Variant> variants;
-  // 1 - veg, 2- non veg
-  int dietContext;
-  String createdBy;
-  String menuItemCategory;
-  int status;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int v;
-
-  MenuItem({
-    required this.id,
-    required this.name,
-    required this.avatar,
-    required this.description,
-    required this.type,
-    required this.variants,
-    required this.dietContext,
-    required this.createdBy,
-    required this.menuItemCategory,
-    required this.status,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.v,
-  });
-
-  factory MenuItem.fromJson(Map<String, dynamic> json) => MenuItem(
-        id: json["_id"],
-        name: json["name"],
-        avatar: json["avatar"],
-        description: json["description"],
-        type: json["type"],
-        variants: List<Variant>.from(
-            json["variants"].map((x) => Variant.fromJson(x))),
-        dietContext: json["dietContext"],
-        createdBy: json["createdBy"],
-        menuItemCategory: json["menuItemCategory"],
-        status: json["status"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "_id": id,
-        "name": name,
-        "avatar": avatar,
-        "description": description,
-        "type": type,
-        "variants": List<dynamic>.from(variants.map((x) => x.toJson())),
-        "dietContext": dietContext,
-        "createdBy": createdBy,
-        "menuItemCategory": menuItemCategory,
-        "status": status,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "__v": v,
-      };
-}
-
-class Variant {
-  String title;
-  int price;
-  String id;
-
-  Variant({
-    required this.title,
-    required this.price,
-    required this.id,
-  });
-
-  factory Variant.fromJson(Map<String, dynamic> json) => Variant(
-        title: json["title"],
-        price: json["price"],
-        id: json["_id"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "title": title,
-        "price": price,
-        "_id": id,
-      };
-}
+//
+// class MenuItem {
+//   String id;
+//   String name;
+//   String avatar;
+//   String description;
+//   int type;
+//   List<Variant> variants;
+//
+//   // 1 - veg, 2- non veg
+//   int dietContext;
+//   String createdBy;
+//   String menuItemCategory;
+//   int status;
+//   DateTime createdAt;
+//   DateTime updatedAt;
+//   int v;
+//
+//   MenuItem({
+//     required this.id,
+//     required this.name,
+//     required this.avatar,
+//     required this.description,
+//     required this.type,
+//     required this.variants,
+//     required this.dietContext,
+//     required this.createdBy,
+//     required this.menuItemCategory,
+//     required this.status,
+//     required this.createdAt,
+//     required this.updatedAt,
+//     required this.v,
+//   });
+//
+//   factory MenuItem.fromJson(Map<String, dynamic> json) => MenuItem(
+//         id: json["_id"],
+//         name: json["name"],
+//         avatar: json["avatar"],
+//         description: json["description"],
+//         type: json["type"],
+//         variants: List<Variant>.from(
+//             json["variants"].map((x) => Variant.fromJson(x))),
+//         dietContext: json["dietContext"],
+//         createdBy: json["createdBy"],
+//         menuItemCategory: json["menuItemCategory"],
+//         status: json["status"],
+//         createdAt: DateTime.parse(json["createdAt"]),
+//         updatedAt: DateTime.parse(json["updatedAt"]),
+//         v: json["__v"],
+//       );
+//
+//   Map<String, dynamic> toJson() => {
+//         "_id": id,
+//         "name": name,
+//         "avatar": avatar,
+//         "description": description,
+//         "type": type,
+//         "variants": List<dynamic>.from(variants.map((x) => x.toJson())),
+//         "dietContext": dietContext,
+//         "createdBy": createdBy,
+//         "menuItemCategory": menuItemCategory,
+//         "status": status,
+//         "createdAt": createdAt.toIso8601String(),
+//         "updatedAt": updatedAt.toIso8601String(),
+//         "__v": v,
+//       };
+// }
+//
+// class Variant {
+//   String title;
+//   int price;
+//   String id;
+//
+//   Variant({
+//     required this.title,
+//     required this.price,
+//     required this.id,
+//   });
+//
+//   factory Variant.fromJson(Map<String, dynamic> json) => Variant(
+//         title: json["title"],
+//         price: json["price"],
+//         id: json["_id"],
+//       );
+//
+//   Map<String, dynamic> toJson() => {
+//         "title": title,
+//         "price": price,
+//         "_id": id,
+//       };
+// }
 
 class Price {
   double totalOriginalPrice;

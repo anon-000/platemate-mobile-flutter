@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:platemate_user/data_models/restaurant.dart';
 import 'package:platemate_user/pages/cart/widgets/cart_details_bar.dart';
 import 'package:platemate_user/pages/checkout/widgets/checkout_items.dart';
 import 'package:platemate_user/pages/checkout/widgets/checkout_restaurant_details.dart';
@@ -31,7 +30,8 @@ class _CheckOutPageState extends State<CheckOutPage> {
   @override
   void initState() {
     super.initState();
-    controller = CheckOutController();
+    controller = Get.put(CheckOutController());
+    controller.onInit();
   }
 
   @override
@@ -49,59 +49,74 @@ class _CheckOutPageState extends State<CheckOutPage> {
       body: Column(
         children: [
           Expanded(
-            child: ListView(
-              children: [
-                CheckOutRestaurantDetails(Restaurant.fromJson({})),
-                CheckOutItemsSection(),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 16),
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            child: controller.cartController.obx(
+              (state) {
+                if (state != null) {
+                  double totalPrice = state.fold(0,
+                      (sum, item) => sum + item.variant.price * item.quantity);
+
+                  return ListView(
                     children: [
-                      MediumTitleText("Order Summary"),
-                      AppPriceWidget(160, 0),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(16),
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      MediumTitleText("Notes for the order"),
-                      const SizedBox(height: 12),
-                      TextFormField(
-                        minLines: 6,
-                        maxLines: 9,
-                        initialValue: controller.remarks,
-                        onSaved: controller.onRemarksSaved,
-                        decoration: AppDecorations.textFieldDecoration(context,
-                                radius: 12)
-                            .copyWith(
-                          prefixIconConstraints:
-                              BoxConstraints.tightFor(width: 54),
-                          hintText: "Give your remarks",
+                      CheckOutRestaurantDetails(controller.restaurant!),
+                      CheckOutItemsSection(state),
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 16),
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
                         ),
-                        keyboardType: TextInputType.name,
-                        textCapitalization: TextCapitalization.sentences,
-                      )
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            MediumTitleText("Order Summary"),
+                            AppPriceWidget(totalPrice,
+                                controller.restaurant!.discountPercentage),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            MediumTitleText("Notes for the order"),
+                            const SizedBox(height: 12),
+                            TextFormField(
+                              minLines: 6,
+                              maxLines: 9,
+                              initialValue: controller.remarks,
+                              onSaved: controller.onRemarksSaved,
+                              decoration: AppDecorations.textFieldDecoration(
+                                      context,
+                                      radius: 12)
+                                  .copyWith(
+                                prefixIconConstraints:
+                                    BoxConstraints.tightFor(width: 54),
+                                hintText: "Give your remarks",
+                              ),
+                              keyboardType: TextInputType.name,
+                              textCapitalization: TextCapitalization.sentences,
+                            )
+                          ],
+                        ),
+                      ),
                     ],
-                  ),
-                ),
-              ],
+                  );
+                }
+                return SizedBox();
+              },
             ),
           ),
-          CartDetailsBar(),
+          CartDetailsBar(
+            btnName: "Place order",
+            onTap: () {},
+          ),
         ],
       ),
     );

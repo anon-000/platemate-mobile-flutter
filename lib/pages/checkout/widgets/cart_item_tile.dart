@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:platemate_user/data_models/order.dart';
 import 'package:platemate_user/pages/checkout/widgets/item_quantity_button.dart';
 
 import '../../../app_configs/app_assets.dart';
@@ -10,7 +11,9 @@ import '../../../app_configs/app_colors.dart';
 ///
 
 class CartItemTile extends StatelessWidget {
-  const CartItemTile({Key? key}) : super(key: key);
+  final OrderedItem datum;
+
+  const CartItemTile(this.datum, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class CartItemTile extends StatelessWidget {
                   const SizedBox(width: 6),
                   Expanded(
                     child: Text(
-                      'Chicken Biriyani',
+                      '${datum.menuItem.name}',
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                       ),
@@ -55,7 +58,7 @@ class CartItemTile extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'Rs. 160',
+                'Rs. ${(datum.variant.price * datum.quantity).toStringAsFixed(1)}',
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 16,

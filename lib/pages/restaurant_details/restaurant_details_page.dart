@@ -62,6 +62,7 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
                           itemBuilder: (c, i) => MenuCategorySection(
                             controller.menuCategories[i],
                             onTap: () => controller.handleExpanded(i),
+                            canModifyCount: false,
                           ),
                           separatorBuilder: (c, i) => MyDivider(),
                           itemCount: controller.menuCategories.length,

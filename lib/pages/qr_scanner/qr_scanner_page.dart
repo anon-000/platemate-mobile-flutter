@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -113,7 +111,13 @@ class _QRSScannerPageState extends State<QRSScannerPage> {
                             scanLineColor: Colors.transparent,
                             onCapture: (data) async {
                               controller.pause();
-                              await Get.toNamed(RestaurantMenuPage.routeName);
+                              await Get.toNamed(
+                                RestaurantMenuPage.routeName,
+                                arguments: {
+                                  "restaurantId": "64397d66da1479c2868aa847",
+                                  "tableId": "643aaa892711194f7d89d280",
+                                },
+                              );
                               // var id = data.split(',')[0];
                               // if (id == SharedPreferenceHelper.user!.user!.id ||
                               //     data.split(',').length != 2) {

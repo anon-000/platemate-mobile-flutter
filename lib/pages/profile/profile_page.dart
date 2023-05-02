@@ -51,15 +51,15 @@ class ProfilePage extends StatelessWidget {
                       vertical: 10,
                     ),
                     decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(0, 0),
-                          blurRadius: 10,
-                          spreadRadius: 0,
-                          color: Color(0xff1A1A1A).withOpacity(0.1),
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //     offset: Offset(0, 0),
+                        //     blurRadius: 10,
+                        //     spreadRadius: 0,
+                        //     color: Color(0xff1A1A1A).withOpacity(0.1),
+                        //   ),
+                        // ],
                         ),
-                      ],
-                    ),
                     child: Material(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
