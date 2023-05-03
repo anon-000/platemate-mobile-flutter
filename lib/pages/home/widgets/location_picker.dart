@@ -16,17 +16,6 @@ class LocationPicker extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 5),
-          //   child: Text(
-          //     "Current Location",
-          //     style: TextStyle(
-          //         color: Color(0xff888888),
-          //         fontSize: 12,
-          //         fontWeight: FontWeight.w500),
-          //   ),
-          // ),
-          // const SizedBox(height: 3),
           Row(
             children: [
               Icon(
@@ -45,23 +34,6 @@ class LocationPicker extends StatelessWidget {
                   ),
                 ),
               ),
-              // Flexible(
-              //   child: ValueListenableBuilder(
-              //     valueListenable: currentLocationNotifier,
-              //     builder: (ctx, value, _) => Text(
-              //       currentLocationNotifier.value.id == null ||
-              //               currentLocationNotifier.value.id!.isEmpty
-              //           ? "Set your city"
-              //           : "${currentLocationNotifier.value.name}",
-              //       maxLines: 1,
-              //       overflow: TextOverflow.ellipsis,
-              //       style: TextStyle(
-              //         color: AppColors.grey80,
-              //         fontSize: 14,
-              //       ),
-              //     ),
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.only(top: 2),
                 child: Icon(

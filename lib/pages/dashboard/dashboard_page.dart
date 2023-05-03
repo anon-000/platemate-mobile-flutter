@@ -6,6 +6,7 @@ import 'package:platemate_user/pages/home/controllers/recommended_restaurants_co
 import 'package:platemate_user/pages/home/home_page.dart';
 import 'package:platemate_user/pages/orders/orders_page.dart';
 import 'package:platemate_user/pages/profile/profile_page.dart';
+import 'package:platemate_user/widgets/current_location_picker.dart';
 
 ///
 /// Created by Kumar Auro from Boiler plate
@@ -38,6 +39,9 @@ class _DashboardPageState extends State<DashboardPage> {
             ? Get.find<RecommendedRestaurantsController>()
             : Get.put(RecommendedRestaurantsController());
     recommendedRestaurantsController.getData();
+
+    // set current location
+    setCurrentLocation();
   }
 
   @override

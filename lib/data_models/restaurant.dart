@@ -22,11 +22,15 @@ class Restaurant {
   String? description;
   Address address;
   List<double> coordinates;
-  DateTime openingTime;
+  DateTime? openingTime;
+  DateTime? closingTime;
   double averagePrice;
   double discountPercentage;
   bool crowded;
   int status;
+  double? averageRating;
+  int? totalRatings;
+  double? distance;
   DateTime createdAt;
   DateTime updatedAt;
   int v;
@@ -40,7 +44,11 @@ class Restaurant {
     this.description,
     required this.address,
     required this.coordinates,
-    required this.openingTime,
+    this.averageRating,
+    this.totalRatings,
+    this.distance,
+    this.openingTime,
+    this.closingTime,
     required this.averagePrice,
     required this.discountPercentage,
     required this.crowded,
@@ -60,9 +68,19 @@ class Restaurant {
         address: Address.fromJson(json["address"]),
         coordinates:
             List<double>.from(json["coordinates"].map((x) => x?.toDouble())),
-        openingTime: DateTime.parse(json["openingTime"]),
+        openingTime: json["openingTime"] == null
+            ? null
+            : DateTime.parse(json["openingTime"]),
+        closingTime: json["closingTime"] == null
+            ? null
+            : DateTime.parse(json["closingTime"]),
         averagePrice:
             json["averagePrice"] == null ? 0 : json["averagePrice"].toDouble(),
+        averageRating: json["averageRating"] == null
+            ? 0
+            : json["averageRating"].toDouble(),
+        totalRatings: json["totalRatings"] ?? 0,
+        distance: json["distance"] == null ? 0 : json["distance"].toDouble(),
         discountPercentage: json["discountPercentage"] == null
             ? 0
             : json["discountPercentage"].toDouble(),
@@ -85,8 +103,14 @@ class Restaurant {
         "description": description,
         "address": address.toJson(),
         "coordinates": List<dynamic>.from(coordinates.map((x) => x)),
-        "openingTime": openingTime.toIso8601String(),
+        "openingTime":
+            openingTime == null ? null : openingTime!.toIso8601String(),
+        "closingTime":
+            closingTime == null ? null : closingTime!.toIso8601String(),
         "averagePrice": averagePrice,
+        "distance": distance,
+        "averageRating": averageRating,
+        "totalRatings": totalRatings,
         "discountPercentage": discountPercentage,
         "crowded": crowded,
         "status": status,

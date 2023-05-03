@@ -5,9 +5,9 @@ mixin Environment {
   static const String environment =
       String.fromEnvironment("env", defaultValue: 'dev');
 
-  // static const String baseApiUrl = environment == 'prod'
-  //     ? 'http://192.168.29.123:3030'
-  //     : 'http://192.168.29.123:3030';
+  static const String baseApiUrl = environment == 'prod'
+      ? 'http://192.168.29.123:3030'
+      : 'http://192.168.29.123:3030';
 
   /// home
   // static const String baseApiUrl = environment == 'prod'
@@ -15,9 +15,9 @@ mixin Environment {
   //     : 'http://192.168.153.156:3030';
 
   // my hotspot collage
-  static const String baseApiUrl = environment == 'prod'
-      ? 'http://192.168.136.156:3030'
-      : 'http://192.168.136.156:3030';
+  // static const String baseApiUrl = environment == 'prod'
+  //     ? 'http://192.168.136.156:3030'
+  //     : 'http://192.168.136.156:3030';
 
   /// office wifi
   // static const String baseApiUrl = environment == 'prod'
@@ -34,7 +34,7 @@ mixin Environment {
 
   static const fontFamily = 'Source Sans Pro';
 
-  static const mapApiKey = 'AIzaSyA0MFZxHOCAO0Suy9MRWS0wIg6_FFynHvg';
+  static const mapApiKey = 'AIzaSyCDCQBnv82-gPUl8bkOuTyQdoELx2nm8eI';
 
   static const razorPayName = "Vridoo";
   static const defaultCoordinates = [23.2599, 77.4126];

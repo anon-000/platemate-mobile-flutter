@@ -1,8 +1,10 @@
 import 'dart:developer';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:platemate_user/api_services/base_api.dart';
 import 'package:platemate_user/app_configs/api_routes.dart';
 import 'package:platemate_user/data_models/restaurant.dart';
+import 'package:platemate_user/global_controllers/user_controller.dart';
 
 ///
 /// Created by Auro on 25/04/23 at 7:03 PM
@@ -34,10 +36,21 @@ class RestaurantDetailsController extends GetxController
 
   getData() async {
     try {
+      /// setting up current coordinates
+      Position? currentPosition;
+      if (Get.isRegistered<UserController>()) {
+        final userController = Get.find<UserController>();
+        currentPosition = userController.position;
+      }
+
       change(null, status: RxStatus.loading());
       final result = await ApiCall.get(
         ApiRoutes.restaurantMenuDetails,
         id: '$restaurantId',
+        query: {
+          if (currentPosition != null) "latitude": currentPosition.latitude,
+          if (currentPosition != null) "longitude": currentPosition.longitude,
+        },
       );
       final response = Restaurant.fromJson(result.data);
 

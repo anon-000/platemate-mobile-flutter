@@ -70,7 +70,7 @@ class RestaurantCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            "3.8",
+                            "${datum.averageRating}",
                             style: TextStyle(
                               color: AppColors.rating_yellow,
                               fontSize: 12,
@@ -78,7 +78,7 @@ class RestaurantCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            "(999k ratings)",
+                            "(${datum.totalRatings} ratings)",
                             style: TextStyle(
                               color: AppColors.grey40,
                               fontSize: 12,

@@ -1,9 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:platemate_user/app_configs/app_assets.dart';
 import 'package:platemate_user/app_configs/app_colors.dart';
 import 'package:platemate_user/data_models/restaurant.dart';
 import 'package:platemate_user/utils/common_functions.dart';
+import 'package:platemate_user/utils/my_extensions.dart';
 import 'package:platemate_user/widgets/my_divider.dart';
 
 ///
@@ -17,6 +19,17 @@ class RestaurantDetailsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime currentTime = DateTime.now();
+    DateTime openingTime = datum.openingTime!
+        .toLocal()
+        .withDate(currentTime.year, currentTime.month, currentTime.day);
+    DateTime closingTime = datum.closingTime!
+        .toLocal()
+        .withDate(currentTime.year, currentTime.month, currentTime.day);
+
+    bool isOpen = currentTime.isAfterOrEqual(openingTime) &&
+        currentTime.isBeforeOrEqual(closingTime);
+
     return Container(
       color: Colors.white,
       padding: const EdgeInsets.all(16),
@@ -27,13 +40,18 @@ class RestaurantDetailsSection extends StatelessWidget {
               Icon(Icons.location_on_rounded),
               const SizedBox(width: 4),
               Text(
-                '18 kms away ',
+                '${(datum.distance! / 1000).toStringAsFixed(1)} kms away ',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              Text("  |  Open now"),
+              Text(
+                "  |  ${isOpen ? "Open now" : "Closed"}",
+                style: TextStyle(
+                  color: isOpen ? Colors.green : Colors.red,
+                ),
+              ),
               Spacer(),
               if (datum.coordinates.isNotEmpty)
                 InkWell(
@@ -42,7 +60,7 @@ class RestaurantDetailsSection extends StatelessWidget {
                     child: SvgPicture.asset(AppAssets.share),
                   ),
                   onTap: () {
-                    openMap(datum.coordinates[0], datum.coordinates[1]);
+                    openMap(datum.coordinates[1], datum.coordinates[0]);
                   },
                 ),
             ],
@@ -62,28 +80,28 @@ class RestaurantDetailsSection extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 5),
-                child: SvgPicture.asset(AppAssets.star),
+                child: SvgPicture.asset(AppAssets.star, height: 24),
               ),
               const SizedBox(width: 10),
               Text(
-                "3.8",
+                "${datum.averageRating!.toStringAsFixed(1)}",
                 style: TextStyle(
                   color: AppColors.rating_yellow,
-                  fontSize: 24,
+                  fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(width: 10),
               Text(
-                "( 999k ratings )",
+                "( ${datum.totalRatings} ratings )",
                 style: TextStyle(
                   color: AppColors.grey40,
-                  fontSize: 16,
+                  fontSize: 15,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 10),
           Row(
             children: [
               Text(

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:geolocator/geolocator.dart';
 import 'package:platemate_user/api_services/base_api.dart';
 import 'package:platemate_user/app_configs/api_routes.dart';
 import 'package:platemate_user/data_models/user.dart';
@@ -12,12 +13,18 @@ import 'package:get/get.dart';
 ///
 
 class UserController extends GetxController with StateMixin<User> {
+  Position? position;
+
   @override
   void onInit() {
     super.onInit();
 
     final user = SharedPreferenceHelper.user?.user;
     change(user, status: user == null ? RxStatus.empty() : RxStatus.success());
+  }
+
+  updateCurrentPosition(Position d) {
+    position = d;
   }
 
   updateUser(User? user) {

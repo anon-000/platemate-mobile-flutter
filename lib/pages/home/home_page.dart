@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:platemate_user/app_configs/app_assets.dart';
 import 'package:platemate_user/pages/home/controllers/recommended_restaurants_controller.dart';
 import 'package:platemate_user/pages/home/widgets/categories_slider.dart';
-import 'package:platemate_user/pages/home/widgets/location_picker.dart';
 import 'package:platemate_user/pages/home/widgets/nearby_restaurants.dart';
 import 'package:platemate_user/pages/home/widgets/recommended_restaurants_slider.dart';
 import 'package:platemate_user/pages/qr_scanner/qr_scanner_page.dart';
+import 'package:platemate_user/widgets/current_location_picker.dart';
 import '../../app_configs/app_colors.dart';
 import 'controllers/category_controller.dart';
 
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
         AppBar(
           backgroundColor: Colors.white,
           titleSpacing: 16,
-          title: LocationPicker(),
+          title: CurrentLocationPicker(),
           actions: [
             IconButton(
               onPressed: () {
