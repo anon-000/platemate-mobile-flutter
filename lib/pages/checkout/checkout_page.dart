@@ -70,8 +70,12 @@ class _CheckOutPageState extends State<CheckOutPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             MediumTitleText("Order Summary"),
-                            AppPriceWidget(totalPrice,
-                                controller.restaurant!.discountPercentage),
+                            AppPriceWidget(
+                                totalPrice,
+                                totalPrice *
+                                    (controller
+                                        .restaurant!.discountPercentage) /
+                                    100),
                           ],
                         ),
                       ),
@@ -91,7 +95,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                               minLines: 6,
                               maxLines: 9,
                               initialValue: controller.remarks,
-                              onSaved: controller.onRemarksSaved,
+                              onChanged: controller.onRemarksSaved,
                               decoration: AppDecorations.textFieldDecoration(
                                       context,
                                       radius: 12)
@@ -113,9 +117,19 @@ class _CheckOutPageState extends State<CheckOutPage> {
               },
             ),
           ),
-          CartDetailsBar(
-            btnName: "Place order",
-            onTap: () {},
+          GetBuilder(
+            init: controller,
+            builder: (c) => controller.loading
+                ? Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : CartDetailsBar(
+                    btnName: "Place order",
+                    onTap: controller.proceed,
+                  ),
           ),
         ],
       ),

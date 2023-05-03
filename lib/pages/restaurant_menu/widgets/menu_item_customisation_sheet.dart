@@ -65,7 +65,11 @@ class _MenuItemCustomisationSheetState
                         controller.selectVariant(variants.first);
                       }
                     },
-                    data: widget.datum.variants.map((e) => e.title).toList(),
+                    data: widget.datum.variants
+                        .map((e) =>
+                            e.title +
+                            "   ( Rs. ${e.price.toStringAsFixed(0)} )")
+                        .toList(),
                     selectedValue: controller.selectedVariant == null
                         ? null
                         : controller.selectedVariant!.title,
@@ -94,21 +98,27 @@ class _MenuItemCustomisationSheetState
                   }
                   return SizedBox();
                 }),
+                const SizedBox(height: 20),
               ],
             ),
           ),
-          AppPrimaryButton(
-            child: Text("Add to cart"),
-            onPressed: () {
-              Get.back(result: {
-                "variant": controller.selectedVariant == null
-                    ? widget.datum.variants.first
-                    : controller.selectedVariant,
-                "customisations": controller.state!
-                    .where((element) => element.customisation.value != null)
-                    .toList().map((e) => e.customisation).toList(),
-              });
-            },
+          SizedBox(
+            width: double.infinity,
+            child: AppPrimaryButton(
+              child: Text("Add to cart"),
+              onPressed: () {
+                Get.back(result: {
+                  "variant": controller.selectedVariant == null
+                      ? widget.datum.variants.first
+                      : controller.selectedVariant,
+                  "customisations": controller.state!
+                      .where((element) => element.customisation.value != null)
+                      .toList()
+                      .map((e) => e.customisation)
+                      .toList(),
+                });
+              },
+            ),
           ),
         ],
       ),

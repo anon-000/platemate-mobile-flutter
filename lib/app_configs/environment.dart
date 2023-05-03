@@ -14,17 +14,15 @@ mixin Environment {
   //     ? 'http://192.168.153.156:3030'
   //     : 'http://192.168.153.156:3030';
 
-  //// my hotspot collage
-  // static const String baseApiUrl = environment == 'prod'
-  //     ? 'http://192.168.136.156:3030'
-  //     : 'http://192.168.136.156:3030';
-
-
+  // my hotspot collage
+  static const String baseApiUrl = environment == 'prod'
+      ? 'http://192.168.136.156:3030'
+      : 'http://192.168.136.156:3030';
 
   /// office wifi
-  static const String baseApiUrl = environment == 'prod'
-      ? 'http://192.168.29.123:3030'
-      : 'http://192.168.29.123:3030';
+  // static const String baseApiUrl = environment == 'prod'
+  //     ? 'http://192.168.29.123:3030'
+  //     : 'http://192.168.29.123:3030';
 
   // static const String baseApiUrl = environment == 'prod'
   //     ? 'http://192.168.136.156:3030'

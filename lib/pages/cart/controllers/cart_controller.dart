@@ -7,6 +7,7 @@ import 'package:platemate_user/data_models/restaurant.dart';
 ///
 
 class CartController extends GetxController with StateMixin<List<OrderedItem>> {
+
   @override
   void onInit() {
     super.onInit();

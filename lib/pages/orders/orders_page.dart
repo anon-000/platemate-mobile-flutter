@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:platemate_user/app_configs/app_colors.dart';
 import 'package:platemate_user/pages/orders/controllers/orders_controller.dart';
 import 'package:platemate_user/pages/orders/widgets/order_tile.dart';
 import 'package:platemate_user/widgets/app_error_widget.dart';
-import 'package:platemate_user/widgets/my_divider.dart';
 
 ///
 /// Created by Auro on 25/02/23 at 10:43 PM
@@ -45,6 +43,7 @@ class _OrdersPageState extends State<OrdersPage> {
         // elevation: 1,
         // backgroundColor: AppColors.brightPrimary,
         backgroundColor: Colors.white,
+        elevation: 0.2,
       ),
       body: controller.obx(
         (state) {
@@ -60,10 +59,7 @@ class _OrdersPageState extends State<OrdersPage> {
                 ),
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 itemCount: state.length,
-                separatorBuilder: (c, i) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: MyDivider(),
-                ),
+                separatorBuilder: (c, i) => const SizedBox(height: 16),
                 itemBuilder: (c, i) => OrderTile(state[i]),
               ),
             );

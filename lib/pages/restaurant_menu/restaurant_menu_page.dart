@@ -85,7 +85,8 @@ class _RestaurantMenuPageState extends State<RestaurantMenuPage> {
                     Get.toNamed(
                       CheckOutPage.routeName,
                       arguments: {
-                        "restaurant": controller.state!.id,
+                        "restaurant": controller.state,
+                        "table": controller.tableId,
                       },
                     );
                   },

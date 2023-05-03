@@ -29,7 +29,7 @@ class AppOrderStatusWidget extends StatelessWidget {
     } else if (status == 4) {
       color = Color(0xff56AB18);
       bgColor = Color(0xffD9FAC1);
-      text = 'Finished';
+      text = 'Served';
     } else if (status == 6) {
       color = Color(0xffAB1818);
       bgColor = Color(0xffFAC1C1);

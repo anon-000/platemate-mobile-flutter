@@ -56,7 +56,10 @@ class MenuCategorySection extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 18),
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemBuilder: (c, i) => MenuItemCard(datum.menuItems[i]),
+                itemBuilder: (c, i) => MenuItemCard(
+                  datum.menuItems[i],
+                  addCartVisibility: canModifyCount,
+                ),
                 separatorBuilder: (c, i) => SizedBox(height: 16),
                 itemCount: datum.menuItems.length,
               ),

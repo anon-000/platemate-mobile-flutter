@@ -16,18 +16,22 @@ import 'package:platemate_user/widgets/my_image.dart';
 
 class MenuItemCard extends StatelessWidget {
   final MenuItem datum;
+  final bool addCartVisibility;
 
-  const MenuItemCard(this.datum, {Key? key}) : super(key: key);
+  const MenuItemCard(this.datum, {Key? key, this.addCartVisibility = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final minPriceVariants = datum.variants.sortedBy((e) => e.price);
 
-    final cartController = Get.find<CartController>();
+    final cartController = Get.isRegistered<CartController>()
+        ? Get.find<CartController>()
+        : Get.put(CartController());
     return GestureDetector(
       onTap: () {},
       child: Container(
-        height: 134,
+        height: addCartVisibility ? 134 : 124,
         padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.grey90),
@@ -93,70 +97,72 @@ class MenuItemCard extends StatelessWidget {
                   height: double.infinity,
                   fit: BoxFit.cover,
                 ),
-                Positioned(
-                  bottom: 10,
-                  left: 10,
-                  right: 10,
-                  child: cartController.obx(
-                    (state) {
-                      if (state != null) {
-                        final items = state
-                            .where((element) => element.menuItem.id == datum.id)
-                            .toList();
+                if (addCartVisibility)
+                  Positioned(
+                    bottom: 10,
+                    left: 10,
+                    right: 10,
+                    child: cartController.obx(
+                      (state) {
+                        if (state != null) {
+                          final items = state
+                              .where(
+                                  (element) => element.menuItem.id == datum.id)
+                              .toList();
 
-                        return items.first.quantity >= 1
-                            ? ItemQuantityButton(
-                                quantity: items.first.quantity,
-                                onIncrement: () =>
-                                    cartController.handleIncreaseCount(datum),
-                                onDecrement: () =>
-                                    cartController.handleDecreaseCount(datum),
-                              )
-                            : AddToCartButton(
-                                onTap: () async {
-                                  final result = await Get.bottomSheet(
-                                    MenuItemCustomisationSheet(datum),
-                                    backgroundColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(16),
-                                        topRight: Radius.circular(16),
+                          return items.first.quantity >= 1
+                              ? ItemQuantityButton(
+                                  quantity: items.first.quantity,
+                                  onIncrement: () =>
+                                      cartController.handleIncreaseCount(datum),
+                                  onDecrement: () =>
+                                      cartController.handleDecreaseCount(datum),
+                                )
+                              : AddToCartButton(
+                                  onTap: () async {
+                                    final result = await Get.bottomSheet(
+                                      MenuItemCustomisationSheet(datum),
+                                      backgroundColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(16),
+                                          topRight: Radius.circular(16),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                  if (result == null) return;
-                                  cartController.handleIncreaseCount(
-                                    datum,
-                                    variant: result['variant'],
-                                    customisations: result['customisations'],
-                                  );
-                                },
-                              );
-                      }
-                      return SizedBox();
-                    },
-                    onEmpty: AddToCartButton(
-                      onTap: () async {
-                        final result = await Get.bottomSheet(
-                          MenuItemCustomisationSheet(datum),
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(16),
-                              topRight: Radius.circular(16),
-                            ),
-                          ),
-                        );
-                        if (result == null) return;
-                        cartController.handleIncreaseCount(
-                          datum,
-                          variant: result['variant'],
-                          customisations: result['customisations'] ?? [],
-                        );
+                                    );
+                                    if (result == null) return;
+                                    cartController.handleIncreaseCount(
+                                      datum,
+                                      variant: result['variant'],
+                                      customisations: result['customisations'],
+                                    );
+                                  },
+                                );
+                        }
+                        return SizedBox();
                       },
+                      onEmpty: AddToCartButton(
+                        onTap: () async {
+                          final result = await Get.bottomSheet(
+                            MenuItemCustomisationSheet(datum),
+                            backgroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(16),
+                                topRight: Radius.circular(16),
+                              ),
+                            ),
+                          );
+                          if (result == null) return;
+                          cartController.handleIncreaseCount(
+                            datum,
+                            variant: result['variant'],
+                            customisations: result['customisations'] ?? [],
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                )
+                  )
               ],
             ),
           ],

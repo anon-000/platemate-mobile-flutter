@@ -5,6 +5,7 @@ import 'package:platemate_user/pages/checkout/widgets/checkout_restaurant_detail
 import 'package:platemate_user/pages/orders/controllers/order_details_controller.dart';
 import 'package:platemate_user/pages/orders/widgets/ordered_items.dart';
 import 'package:platemate_user/widgets/app_error_widget.dart';
+import 'package:platemate_user/widgets/app_order_status_widget.dart';
 import 'package:platemate_user/widgets/app_price_widget.dart';
 import 'package:platemate_user/widgets/app_title.dart';
 
@@ -68,6 +69,14 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
               centerTitle: true,
               iconTheme: IconThemeData(color: Colors.black),
               backgroundColor: Colors.white,
+              actions: [
+                Center(
+                  child: AppOrderStatusWidget(
+                    state.status,
+                  ),
+                ),
+                const SizedBox(width: 16),
+              ],
             ),
             body: Column(
               children: [

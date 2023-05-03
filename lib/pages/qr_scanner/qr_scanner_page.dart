@@ -111,7 +111,7 @@ class _QRSScannerPageState extends State<QRSScannerPage> {
                             scanLineColor: Colors.transparent,
                             onCapture: (data) async {
                               controller.pause();
-                              await Get.toNamed(
+                              Get.offAndToNamed(
                                 RestaurantMenuPage.routeName,
                                 arguments: {
                                   "restaurantId": "64397d66da1479c2868aa847",
@@ -129,8 +129,8 @@ class _QRSScannerPageState extends State<QRSScannerPage> {
                               //   Get.offNamed(PaymentTransferPage.routeName,
                               //       arguments: {'recipient': data});
                               // }
-                              controller.resume();
-                              setState(() {});
+                              // controller.resume();
+                              // setState(() {});
                             },
                           ),
                         ),

@@ -238,7 +238,7 @@ class MenuItemCategorySection {
     required this.id,
     required this.name,
     required this.menuItems,
-    this.visible = false,
+    this.visible = true,
   });
 
   @override
