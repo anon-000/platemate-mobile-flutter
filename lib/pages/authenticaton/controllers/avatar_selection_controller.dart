@@ -48,19 +48,19 @@ class AvatarSelectionController extends GetxController {
   }
 
   void proceed() async {
-    if (image != null) {
-      try {
+    try {
+      if (image != null) {
         buttonKey.currentState?.showLoader();
         final url = await ApiCall.singleFileUpload(image!);
         await AuthHelper.updateUser({"avatar": url});
         buttonKey.currentState?.hideLoader();
         SnackBarHelper.show("Profile picture updated");
-        AuthHelper.checkUserLevel();
-      } catch (e, s) {
-        log("Signup_Page", error: e, stackTrace: s);
-        SnackBarHelper.show(e.toString());
-        buttonKey.currentState?.hideLoader();
       }
+      AuthHelper.checkUserLevel();
+    } catch (e, s) {
+      log("Signup_Page", error: e, stackTrace: s);
+      SnackBarHelper.show(e.toString());
+      buttonKey.currentState?.hideLoader();
     }
   }
 }

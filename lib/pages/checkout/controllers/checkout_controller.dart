@@ -90,6 +90,8 @@ class CheckOutController extends GetxController {
         OrderDetailsPage.routeName,
         arguments: {
           "order": result.data['_id'],
+          "tableId": tableId,
+          "restaurantId": restaurant!.id,
         },
       );
     } catch (err) {

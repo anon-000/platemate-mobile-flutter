@@ -5,9 +5,9 @@ mixin Environment {
   static const String environment =
       String.fromEnvironment("env", defaultValue: 'dev');
 
-  static const String baseApiUrl = environment == 'prod'
-      ? 'http://192.168.29.123:3030'
-      : 'http://192.168.29.123:3030';
+  // static const String baseApiUrl = environment == 'prod'
+  //     ? 'http://192.168.29.123:3030'
+  //     : 'http://192.168.29.123:3030';
 
   /// home
   // static const String baseApiUrl = environment == 'prod'
@@ -24,9 +24,9 @@ mixin Environment {
   //     ? 'http://192.168.29.123:3030'
   //     : 'http://192.168.29.123:3030';
 
-  // static const String baseApiUrl = environment == 'prod'
-  //     ? 'http://192.168.136.156:3030'
-  //     : 'http://192.168.136.156:3030';
+  static const String baseApiUrl = environment == 'prod'
+      ? 'http://192.168.136.156:3030'
+      : 'http://192.168.136.156:3030';
 
   static const googleClientId = environment == 'prod'
       ? '1047854581243-s0re1r4vnt3lp6qubochtdgv2knv9sv5.apps.googleusercontent.com'
@@ -36,15 +36,15 @@ mixin Environment {
 
   static const mapApiKey = 'AIzaSyCDCQBnv82-gPUl8bkOuTyQdoELx2nm8eI';
 
-  static const razorPayName = "Vridoo";
+  static const razorPayName = "Platemate";
   static const defaultCoordinates = [23.2599, 77.4126];
 
   static const razorPayKey = environment == 'prod'
-      ? 'rzp_test_pC6qqqbP83w7bs'
-      : 'rzp_test_pC6qqqbP83w7bs';
+      ? 'rzp_test_tcJuPd0rQfOa28'
+      : 'rzp_test_tcJuPd0rQfOa28';
   static const otpLength = 6;
 
-  static const razorPayKeySecret = 'RDgDRqnLU0JdfFjV5ZO6JTWc';
+  static const razorPayKeySecret = 'BlXFJVbUE3yo9aZubR6wOfFS';
   static const termsUrl =
       'https://api.test.festabash.com/terms-and-conditions/';
   static const privacyUrl = 'https://api.test.festabash.com/privacy-policy/';

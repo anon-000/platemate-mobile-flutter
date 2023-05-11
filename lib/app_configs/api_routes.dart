@@ -40,6 +40,7 @@ mixin ApiRoutes {
   static const String foodCategories = "$v1/food-categories";
   static const String recommendedRestaurants = "$v1/recommended-restaurants";
   static const String order = "$v1/order";
+  static const String transaction = "$v1/transaction";
   static const String restaurantMenuDetails = "$v1/restaurant-menu-details";
   static const String menuCustomisations = "$v1/menu-item-customisations";
 }

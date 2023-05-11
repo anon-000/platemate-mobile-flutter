@@ -110,15 +110,8 @@ class MenuItemCard extends StatelessWidget {
                                   (element) => element.menuItem.id == datum.id)
                               .toList();
 
-                          return items.first.quantity >= 1
-                              ? ItemQuantityButton(
-                                  quantity: items.first.quantity,
-                                  onIncrement: () =>
-                                      cartController.handleIncreaseCount(datum),
-                                  onDecrement: () =>
-                                      cartController.handleDecreaseCount(datum),
-                                )
-                              : AddToCartButton(
+                          return items.isEmpty
+                              ? AddToCartButton(
                                   onTap: () async {
                                     final result = await Get.bottomSheet(
                                       MenuItemCustomisationSheet(datum),
@@ -137,6 +130,13 @@ class MenuItemCard extends StatelessWidget {
                                       customisations: result['customisations'],
                                     );
                                   },
+                                )
+                              : ItemQuantityButton(
+                                  quantity: items.first.quantity,
+                                  onIncrement: () =>
+                                      cartController.handleIncreaseCount(datum),
+                                  onDecrement: () =>
+                                      cartController.handleDecreaseCount(datum),
                                 );
                         }
                         return SizedBox();

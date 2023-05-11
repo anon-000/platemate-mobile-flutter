@@ -133,8 +133,7 @@ class _AvatarSelectionPageState extends State<AvatarSelectionPage> {
                   child: AppPrimaryButton(
                     key: _controller.buttonKey,
                     child: Text("Next".toUpperCase()),
-                    onPressed:
-                        _controller.image == null ? null : _controller.proceed,
+                    onPressed: _controller.proceed,
                   ),
                 ),
               ),

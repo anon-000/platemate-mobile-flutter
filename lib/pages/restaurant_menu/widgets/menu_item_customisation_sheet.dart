@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:platemate_user/data_models/restaurant.dart';
@@ -56,24 +57,28 @@ class _MenuItemCustomisationSheetState
                 if (widget.datum.variants.length > 1)
                   const SizedBox(height: 16),
                 if (widget.datum.variants.length > 1)
-                  CustomisationInputBox(
-                    onChanged: (c) {
-                      List<Variant> variants = widget.datum.variants
-                          .where((element) => element.title == c)
-                          .toList();
-                      if (variants.isNotEmpty) {
-                        controller.selectVariant(variants.first);
-                      }
-                    },
-                    data: widget.datum.variants
-                        .map((e) =>
-                            e.title +
-                            "   ( Rs. ${e.price.toStringAsFixed(0)} )")
-                        .toList(),
-                    selectedValue: controller.selectedVariant == null
-                        ? null
-                        : controller.selectedVariant!.title,
-                    title: "Variants",
+                  GetBuilder(
+                    init: controller,
+                    builder: (c) => VariantsInputBox(
+                      onChanged: (c) {
+                        List<Variant> variants = widget.datum.variants
+                            .where((e) => c == e.title)
+                            .toList();
+                        if (variants.isNotEmpty) {
+                          controller.selectVariant(variants.first);
+                        }
+                      },
+                      displayData: widget.datum.variants
+                          .map((e) =>
+                              e.title +
+                              "   ( Rs. ${e.price.toStringAsFixed(0)} )")
+                          .toList(),
+                      data: widget.datum.variants.map((e) => e.title).toList(),
+                      selectedValue: controller.selectedVariant == null
+                          ? null
+                          : controller.selectedVariant!.title,
+                      title: "Variants",
+                    ),
                   ),
                 const SizedBox(height: 16),
                 controller.obx((state) {

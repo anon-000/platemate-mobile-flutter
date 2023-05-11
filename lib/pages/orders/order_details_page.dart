@@ -4,6 +4,7 @@ import 'package:platemate_user/data_models/order.dart';
 import 'package:platemate_user/pages/checkout/widgets/checkout_restaurant_details.dart';
 import 'package:platemate_user/pages/orders/controllers/order_details_controller.dart';
 import 'package:platemate_user/pages/orders/widgets/ordered_items.dart';
+import 'package:platemate_user/widgets/app_buttons/app_primary_button.dart';
 import 'package:platemate_user/widgets/app_error_widget.dart';
 import 'package:platemate_user/widgets/app_order_status_widget.dart';
 import 'package:platemate_user/widgets/app_price_widget.dart';
@@ -136,14 +137,38 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     ),
                   ),
                 ),
-                // SizedBox(
-                //   width: double.infinity,
-                //   child: AppPrimaryButton(
-                //     radius: 0,
-                //     child: Text("Reorder"),
-                //     onPressed: () {},
-                //   ),
-                // )
+                if (orderDetails.status == 4)
+                  orderDetails.paymentStatus == 1
+                      ? Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.check_box,
+                                  color: Colors.green,
+                                  size: 30,
+                                ),
+                                const SizedBox(width: 6),
+                                Text(
+                                  "Paid",
+                                  style: TextStyle(
+                                      color: Colors.green, fontSize: 22),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      : SizedBox(
+                          width: double.infinity,
+                          child: AppPrimaryButton(
+                            key: controller.buttonKey,
+                            radius: 0,
+                            child: Text("PAY NOW"),
+                            onPressed: controller.createTransaction,
+                          ),
+                        )
               ],
             ),
           );

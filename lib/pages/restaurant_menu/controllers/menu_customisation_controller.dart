@@ -24,12 +24,14 @@ class MenuCustomisationController extends GetxController
   }
 
   selectCustomisationValue(int i, String v) {
+
     List<MenuCustomisation> tempList = state ?? [];
     tempList[i].customisation.value = v;
     change(tempList, status: RxStatus.success());
   }
 
   selectVariant(Variant d) {
+    log("on changed : ${d.id}");
     selectedVariant = d;
     update();
   }
